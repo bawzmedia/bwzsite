@@ -25,7 +25,7 @@ export default function HeroCarousel() {
       color: '#E9A820'
     },
     {
-      title: 'ATS DRONE TRAINING',
+      title: 'ATS DRONE SHOW',
       subtitle: 'EDMONTON INTERNATIONAL AIRPORT',
       image: '/DSC04706.jpg',
       color: '#E9A820'
