@@ -23,10 +23,10 @@ export default function About() {
       image: '/n8nworkflow.png',
       description: 'AI automation systems that replace manual work and keep your business running 24/7. Sales agents, customer-facing agents, and workflow pipelines built with n8n, Voiceflow, and custom integrations—turning operations into scalable machines.'
     },
-    'ADVERTISING': {
-      title: 'ADVERTISING',
+    'BRAND DEVELOPMENT': {
+      title: 'BRAND DEVELOPMENT',
       image: '/LedcorExample_compressed.jpg',
-      description: 'Proven work in paid advertising, Amazon FBA, and e-commerce campaigns. Creating campaign films and commercial content for major brands—ads that look intentional, credible, and high-value while converting at scale.'
+      description: 'Building complete brand identities from concept to execution. Visual systems, messaging strategy, and market positioning that make brands look credible, intentional, and built to scale. From local businesses to national campaigns.'
     }
   };
 
@@ -163,7 +163,7 @@ export default function About() {
                 { icon: Award, label: 'BROADCAST' },
                 { icon: Target, label: 'MARKETING' },
                 { icon: Sparkles, label: 'AI SYSTEMS' },
-                { icon: Zap, label: 'ADVERTISING' },
+                { icon: Zap, label: 'BRAND DEVELOPMENT' },
               ].map((item, index) => (
                 <button
                   key={index}
