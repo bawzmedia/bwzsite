@@ -57,13 +57,16 @@ export default function VideoPoster() {
         </div>
       )}
 
-      {/* Content */}
-      <div className="absolute top-0 left-0 right-0 flex justify-center pt-8 sm:pt-12 md:pt-16 lg:pt-20 pointer-events-none z-10">
-        <div className="text-center px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black leading-tight drop-shadow-2xl">
-            <span className="text-[#eaa509]">WORLD CLASS</span>
-            <br />
-            <span className="text-white">AI VIDEO PRODUCTION</span>
+      {/* Content - Centered Text Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+        <div className="text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight">
+            <span className="block text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+              WORLD CLASS
+            </span>
+            <span className="block text-[#eaa509] drop-shadow-[0_0_60px_rgba(234,168,32,0.6)] mt-2">
+              AI VIDEO PRODUCTION
+            </span>
           </h2>
         </div>
       </div>
