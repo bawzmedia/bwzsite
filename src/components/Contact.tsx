@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Send, CheckCircle2, ArrowRight, ArrowLeft, MessageSquare } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -25,9 +25,6 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState('');
-  const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
-  const sectionRef = useRef<HTMLElement>(null);
-  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(null);
 
   const questions = [
     {
@@ -96,39 +93,6 @@ export default function Contact() {
     }
   ];
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            section.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    // Don't auto-focus on touch devices (iPad/mobile) to prevent crashes
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isQuestionsOpen && inputRef.current && !isTouchDevice) {
-      setTimeout(() => {
-        try {
-          inputRef.current?.focus();
-        } catch (e) {
-          console.log('Focus failed:', e);
-        }
-      }, 300);
-    }
-  }, [currentStep, isQuestionsOpen]);
-
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -157,8 +121,7 @@ export default function Contact() {
     if (!canProceed()) return;
     
     if (currentStep < questions.length - 1) {
-      setDirection('forward');
-      setCurrentStep(currentStep + 1);
+      setCurrentStep(prev => prev + 1);
     } else {
       handleSubmit();
     }
@@ -166,8 +129,7 @@ export default function Contact() {
 
   const handleBack = () => {
     if (currentStep > 0) {
-      setDirection('backward');
-      setCurrentStep(currentStep - 1);
+      setCurrentStep(prev => prev - 1);
       setEmailError('');
     }
   };
@@ -222,7 +184,6 @@ export default function Contact() {
 
   return (
     <section
-      ref={sectionRef}
       id="contact"
       className="relative py-20 sm:py-24 md:py-32 contact-section min-h-screen flex items-center justify-center"
     >
@@ -236,7 +197,7 @@ export default function Contact() {
       <div className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         {!isQuestionsOpen && !submitted ? (
           // Initial state - Send Message button
-          <div className="text-center space-y-8 opacity-0 contact-header">
+          <div className="text-center space-y-8">
             <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight">
               LET'S CONNECT
             </h2>
@@ -287,21 +248,19 @@ export default function Contact() {
                 <div className="space-y-3">
                   {currentQuestion.type === 'text' && (
                     <input
-                      ref={inputRef as React.RefObject<HTMLInputElement>}
                       type="text"
                       placeholder={currentQuestion.placeholder}
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
                       onKeyPress={handleKeyPress}
                       className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
-                      style={{ fontSize: '16px' }}
+                      autoComplete="off"
                     />
                   )}
 
                   {currentQuestion.type === 'email' && (
                     <>
                       <input
-                        ref={inputRef as React.RefObject<HTMLInputElement>}
                         type="email"
                         placeholder={currentQuestion.placeholder}
                         value={formData[currentQuestion.id as keyof FormData]}
@@ -312,21 +271,19 @@ export default function Contact() {
                         onBlur={(e) => validateEmail(e.target.value)}
                         onKeyPress={handleKeyPress}
                         className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
-                        style={{ fontSize: '16px' }}
+                        autoComplete="email"
                       />
                       {emailError && (
-                        <p className="text-red-400 text-sm mt-2 animate-fade-in">{emailError}</p>
+                        <p className="text-red-400 text-sm mt-2">{emailError}</p>
                       )}
                     </>
                   )}
 
                   {currentQuestion.type === 'select' && (
                     <select
-                      ref={inputRef as React.RefObject<HTMLSelectElement>}
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
                       className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light focus:outline-none focus:border-[#eaa509] transition-all duration-300 cursor-pointer"
-                      style={{ fontSize: '16px' }}
                     >
                       {currentQuestion.options?.map((option) => (
                         <option key={option} value={option} className="bg-black text-white">
@@ -338,13 +295,12 @@ export default function Contact() {
 
                   {currentQuestion.type === 'textarea' && (
                     <textarea
-                      ref={inputRef as React.RefObject<HTMLTextAreaElement>}
                       placeholder={currentQuestion.placeholder}
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
                       rows={5}
                       className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-lg font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300 resize-none"
-                      style={{ fontSize: '16px' }}
+                      autoComplete="off"
                     />
                   )}
                 </div>
@@ -415,40 +371,6 @@ export default function Contact() {
           scroll-margin-top: 100px;
         }
 
-        .contact-header {
-          animation: slideUp 0.8s ease-out forwards;
-        }
-
-        .contact-section.is-visible .contact-header {
-          opacity: 1;
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
-        }
-
         /* Custom select arrow */
         select {
           appearance: none;
@@ -459,15 +381,31 @@ export default function Contact() {
           padding-right: 2.5rem;
         }
 
-        /* iPad optimization - prevent white screen */
+        /* Mobile/iPad optimization */
         @supports (-webkit-touch-callout: none) {
           .contact-section {
             min-height: -webkit-fill-available;
           }
           
           input, textarea, select {
-            font-size: 16px; /* Prevent zoom on iOS */
+            font-size: 16px !important;
           }
+        }
+
+        /* Success animation */
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
         }
       `}</style>
     </section>
