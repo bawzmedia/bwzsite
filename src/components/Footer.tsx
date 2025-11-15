@@ -13,12 +13,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black border-t-2 border-[#E9A820]/20">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <footer className="relative border-t-2 border-[#E9A820]/20">
+      {/* Black background layer - z-0 */}
+      <div className="absolute inset-0 bg-black -z-10"></div>
+      
+      <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 z-10">
         <div className="py-8 flex flex-col items-center gap-6">
-          <img src="/Bawzmedia Main Logo.png" alt="Bawzmedia" className="h-10" />
+          <img src="/Bawzmedia Main Logo.png" alt="Bawzmedia" className="h-10 relative z-20" />
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 relative z-20">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
@@ -35,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 relative z-20">
             <p className="text-gray-400 text-sm">
               © 2025 BAWZMEDIA. All rights reserved.
             </p>
