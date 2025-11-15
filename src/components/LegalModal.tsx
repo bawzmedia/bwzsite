@@ -29,10 +29,10 @@ const legalContent = {
       <p class="mb-4">We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
 
       <h3 class="text-xl font-bold text-[#E9A820] mb-4">Your Rights</h3>
-      <p class="mb-4">You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at hello@bawzmedia.com.</p>
+      <p class="mb-4">You have the right to access, correct, or delete your personal information. To exercise these rights, please contact us at automated.systems@bawzmedia.com.</p>
 
       <h3 class="text-xl font-bold text-[#E9A820] mb-4">Contact Us</h3>
-      <p>If you have any questions about this Privacy Policy, please contact us at hello@bawzmedia.com.</p>
+      <p>If you have any questions about this Privacy Policy, please contact us at automated.systems@bawzmedia.com.</p>
     `
   },
   terms: {
@@ -82,7 +82,7 @@ const legalContent = {
       <p class="mb-4">Most web browsers allow you to control cookies through their settings preferences. However, limiting cookies may impact your experience on our website.</p>
 
       <h3 class="text-xl font-bold text-[#E9A820] mb-4">Contact Us</h3>
-      <p>If you have any questions about our use of cookies, please contact us at hello@bawzmedia.com.</p>
+      <p>If you have any questions about our use of cookies, please contact us at automated.systems@bawzmedia.com.</p>
     `
   }
 };
