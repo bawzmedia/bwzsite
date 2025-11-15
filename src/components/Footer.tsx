@@ -9,7 +9,7 @@ export default function Footer() {
     { icon: Instagram, href: 'https://www.instagram.com/bawzmedia/', label: 'Instagram' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/ahmed-bawazir-73696598', label: 'LinkedIn' },
     { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100092572812959', label: 'Facebook' },
-    { icon: Youtube, href: 'https://www.youtube.com/@bawzmedia', label: 'YouTube' },
+    { icon: Youtube, href: 'https://www.youtube.com/@bawzmedia-1', label: 'YouTube' },
   ];
 
   return (
