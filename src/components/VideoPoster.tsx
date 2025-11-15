@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export default function VideoPoster() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const videoId = '1136657590';
 
   return (
     <section className="relative h-[60vh] sm:h-[70vh] md:h-screen overflow-hidden bg-black">
@@ -11,9 +12,13 @@ export default function VideoPoster() {
         <>
           <div className="absolute inset-0">
             <img
-              src="/IMG_2112.jpg"
+              src={`https://vumbnail.com/${videoId}_large.jpg`}
               alt="Video thumbnail"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to Vimeo's own thumbnail API if vumbnail fails
+                e.currentTarget.src = `https://i.vimeocdn.com/video/${videoId}_1920x1080.jpg`;
+              }}
             />
             <div className="absolute inset-0 bg-black/50"></div>
           </div>
