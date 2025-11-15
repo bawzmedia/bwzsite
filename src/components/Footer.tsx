@@ -14,9 +14,12 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t-2 border-[#E9A820]/20">
-      {/* Semi-transparent overlay to darken but show film effect */}
-      <div className="absolute inset-0 bg-black/40 z-[1]"></div>
+      {/* Layer 2 (bottom): Black background */}
+      <div className="absolute inset-0 bg-black -z-20"></div>
       
+      {/* Layer 1 (middle): Film timeline effect - shows at z-0 from FilmTimeline component */}
+      
+      {/* Layer 3 (top): Footer content */}
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 z-10">
         <div className="py-8 flex flex-col items-center gap-6">
           <img src="/Bawzmedia Main Logo.png" alt="Bawzmedia" className="h-10 relative z-20" />
