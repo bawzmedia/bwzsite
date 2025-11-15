@@ -175,11 +175,15 @@ export default function Contact() {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      if (canProceed()) {
-        handleNext();
+    try {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        if (canProceed()) {
+          handleNext();
+        }
       }
+    } catch (error) {
+      console.error('Key press error:', error);
     }
   };
 
@@ -187,16 +191,24 @@ export default function Contact() {
 
   const currentQuestion = questions[currentStep] || questions[0];
 
-  // Safety check
+  // Safety checks
   if (!currentQuestion) {
-    return null;
+    console.error('No current question found');
+    return (
+      <section id="contact" className="relative py-20 min-h-screen flex items-center justify-center bg-black">
+        <div className="text-white text-center">
+          <p>Loading...</p>
+        </div>
+      </section>
+    );
   }
 
-  return (
-    <section
-      id="contact"
-      className="relative py-20 sm:py-24 md:py-32 contact-section min-h-screen flex items-center justify-center"
-    >
+  try {
+    return (
+      <section
+        id="contact"
+        className="relative py-20 sm:py-24 md:py-32 contact-section min-h-screen flex items-center justify-center"
+      >
       {/* Optimized gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-black to-black"></div>
 
@@ -235,14 +247,11 @@ export default function Contact() {
                 <span className="text-sm text-gray-500 font-medium">
                   Question {currentStep + 1} of {questions.length}
                 </span>
-                <span className="text-sm text-gray-500 font-medium">
-                  {Math.round(progressPercentage)}% Complete
-                </span>
               </div>
               <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-[#eaa509] to-[#f4c430] transition-all duration-500 ease-out"
-                  style={{ width: `${progressPercentage}%` }}
+                  className="h-full bg-[#eaa509]"
+                  style={{ width: progressPercentage + '%' }}
                 ></div>
               </div>
             </div>
@@ -258,11 +267,11 @@ export default function Contact() {
                 <div className="space-y-3">
                   {currentQuestion.type === 'text' && (
                     <input
+                      key={`text-${currentStep}`}
                       type="text"
                       placeholder={currentQuestion.placeholder}
                       value={formData[currentQuestion.id as keyof FormData] || ''}
                       onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
-                      onKeyPress={handleKeyPress}
                       className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                       autoComplete="off"
                     />
@@ -271,6 +280,7 @@ export default function Contact() {
                   {currentQuestion.type === 'email' && (
                     <>
                       <input
+                        key={`email-${currentStep}`}
                         type="email"
                         placeholder={currentQuestion.placeholder}
                         value={formData[currentQuestion.id as keyof FormData] || ''}
@@ -279,7 +289,6 @@ export default function Contact() {
                           if (emailError) validateEmail(e.target.value);
                         }}
                         onBlur={(e) => validateEmail(e.target.value)}
-                        onKeyPress={handleKeyPress}
                         className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                         autoComplete="email"
                       />
@@ -291,6 +300,7 @@ export default function Contact() {
 
                   {currentQuestion.type === 'select' && (
                     <select
+                      key={`select-${currentStep}`}
                       value={formData[currentQuestion.id as keyof FormData] || ''}
                       onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
                       className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
@@ -305,6 +315,7 @@ export default function Contact() {
 
                   {currentQuestion.type === 'textarea' && (
                     <textarea
+                      key={`textarea-${currentStep}`}
                       placeholder={currentQuestion.placeholder}
                       value={formData[currentQuestion.id as keyof FormData] || ''}
                       onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
@@ -350,11 +361,6 @@ export default function Contact() {
                     )}
                   </button>
                 </div>
-
-                {/* Helper text */}
-                <p className="text-sm text-gray-600 text-center">
-                  Press <kbd className="px-2 py-1 bg-white/10 rounded text-white">Enter</kbd> to continue
-                </p>
             </div>
           </div>
         ) : (
@@ -419,5 +425,16 @@ export default function Contact() {
         }
       `}</style>
     </section>
-  );
+    );
+  } catch (error) {
+    console.error('Contact component render error:', error);
+    return (
+      <section id="contact" className="relative py-20 min-h-screen flex items-center justify-center bg-black">
+        <div className="text-white text-center p-8">
+          <h2 className="text-3xl font-bold mb-4">LET'S CONNECT</h2>
+          <p className="text-gray-400">Please refresh the page or contact us directly.</p>
+        </div>
+      </section>
+    );
+  }
 }
