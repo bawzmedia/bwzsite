@@ -1,14 +1,19 @@
 export default function VideoPoster() {
   return (
     <section className="relative h-screen overflow-hidden bg-black">
+      {/* Background fallback for when video doesn't load */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+      
       {/* Vimeo iframe background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <iframe
-          src="https://player.vimeo.com/video/1136657590?h=4e1f3c8c42&autoplay=1&loop=1&autopause=0&muted=1&title=0&byline=0&portrait=0&controls=0&background=1"
+          src="https://player.vimeo.com/video/1136657590?h=4e1f3c8c42&autoplay=1&loop=1&autopause=0&muted=1&title=0&byline=0&portrait=0&controls=0&background=1&playsinline=1"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77vh] min-w-full h-[56.25vw] min-h-full"
           style={{ border: 'none' }}
-          allow="autoplay; fullscreen; picture-in-picture"
+          allow="autoplay; fullscreen; picture-in-picture; playsinline"
+          allowFullScreen
           title="Showreel"
+          loading="lazy"
         />
       </div>
 
