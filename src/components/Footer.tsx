@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Instagram, Linkedin, Facebook, Youtube } from 'lucide-react';
 import { useState } from 'react';
 import LegalModal from './LegalModal';
 
@@ -6,10 +6,10 @@ export default function Footer() {
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | 'cookies' | null>(null);
 
   const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
+    { icon: Instagram, href: 'https://www.instagram.com/bawzmedia/', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/ahmed-bawazir-73696598', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100092572812959', label: 'Facebook' },
+    { icon: Youtube, href: 'https://www.youtube.com/@bawzmedia', label: 'YouTube' },
   ];
 
   return (
@@ -23,6 +23,8 @@ export default function Footer() {
               <a
                 key={index}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
                 className="w-12 h-12 border-2 border-white/10 flex items-center justify-center hover:border-[#E9A820] hover:bg-[#E9A820]/10 transition-all group"
               >
