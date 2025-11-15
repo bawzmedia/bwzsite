@@ -1,10 +1,34 @@
 import { useState } from 'react';
-import { Sparkles, Zap, Target, Award } from 'lucide-react';
+import { Sparkles, Zap, Target, Award, X } from 'lucide-react';
 import LeadCaptureModal from './LeadCaptureModal';
 
 export default function About() {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedExpertise, setSelectedExpertise] = useState<string | null>(null);
+
+  const expertiseDetails = {
+    'BROADCAST': {
+      title: 'BROADCAST',
+      image: '/DSC03782.jpg',
+      description: 'Over 5 years directing and editing for national broadcast television. From raw footage to polished episodes, I handle full post-production including color grading, sound design, and narrative pacing for shows aired on major networks like Sportsman Channel and World Fishing Network.'
+    },
+    'MARKETING': {
+      title: 'MARKETING',
+      image: '/1223 copy.png',
+      description: 'Strategic marketing campaigns that drive real results. Specializing in social media strategy, content marketing, and performance-driven advertising across digital platforms. Building brands that convert and scale through data-driven creative.'
+    },
+    'AI SYSTEMS': {
+      title: 'AI SYSTEMS',
+      image: '/n8nworkflow.png',
+      description: 'Building intelligent automation systems with n8n, Voiceflow, and custom AI integrations. From customer-facing AI agents to complex workflow automation that runs 24/7, turning manual processes into scalable, autonomous systems.'
+    },
+    'ADVERTISING': {
+      title: 'ADVERTISING',
+      image: '/LedcorExample_compressed.jpg',
+      description: 'Performance advertising specialist with experience in paid social, Amazon FBA, and e-commerce campaigns. Creating campaign films and commercial content for major brands like Ledcor, delivering ads that convert and scale revenue.'
+    }
+  };
 
   return (
     <section id="about" className="relative min-h-screen bg-black overflow-hidden flex items-center py-12 sm:py-16 md:py-20">
@@ -141,14 +165,15 @@ export default function About() {
                 { icon: Sparkles, label: 'AI SYSTEMS' },
                 { icon: Zap, label: 'ADVERTISING' },
               ].map((item, index) => (
-                <div
+                <button
                   key={index}
+                  onClick={() => setSelectedExpertise(item.label)}
                   className="group relative p-2 sm:p-3 md:p-4 border border-white/10 sm:border-2 hover:border-[#E9A820] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex items-center justify-center"
                 >
                   <div className="text-center">
                     <div className="text-xs sm:text-sm md:text-base lg:text-xl font-black text-white tracking-tight">{item.label}</div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
 
@@ -173,7 +198,77 @@ export default function About() {
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
 
+      {/* Expertise Popup - Small, positioned at bottom right */}
+      {selectedExpertise && expertiseDetails[selectedExpertise as keyof typeof expertiseDetails] && (
+        <div 
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end p-4 animate-fade-in"
+          onClick={() => setSelectedExpertise(null)}
+        >
+          <div
+            className="relative w-full sm:w-96 bg-gradient-to-br from-[#1b032a] to-black border-2 border-[#E9A820] rounded-lg shadow-2xl overflow-hidden animate-slide-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedExpertise(null);
+              }}
+              className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors touch-manipulation"
+              style={{ WebkitTapHighlightColor: 'transparent' }}
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+
+            {/* Image */}
+            <div className="relative h-32 overflow-hidden">
+              <img
+                src={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].image}
+                alt={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              <h3 className="text-2xl font-black text-[#E9A820] mb-3">
+                {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
+              </h3>
+              <p className="text-sm text-gray-300 leading-relaxed">
+                {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <LeadCaptureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.2s ease-out forwards;
+        }
+
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slide-up {
+          animation: slide-up 0.3s ease-out forwards;
+        }
+      `}</style>
     </section>
   );
 }
