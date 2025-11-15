@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Send, CheckCircle2, ArrowRight, ArrowLeft, MessageSquare } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -25,6 +25,11 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [emailError, setEmailError] = useState('');
+
+  // Memoized update function to prevent re-renders
+  const updateField = useCallback((field: keyof FormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  }, []);
 
   const questions = [
     {
@@ -180,7 +185,12 @@ export default function Contact() {
 
   const progressPercentage = ((currentStep + 1) / questions.length) * 100;
 
-  const currentQuestion = questions[currentStep];
+  const currentQuestion = questions[currentStep] || questions[0];
+
+  // Safety check
+  if (!currentQuestion) {
+    return null;
+  }
 
   return (
     <section
@@ -238,7 +248,7 @@ export default function Contact() {
             </div>
 
             {/* Question */}
-            <div className="space-y-8">
+            <div className="space-y-8" key={`question-${currentStep}`}>
                 {/* Question */}
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
                   {currentQuestion.question}
@@ -250,10 +260,10 @@ export default function Contact() {
                     <input
                       type="text"
                       placeholder={currentQuestion.placeholder}
-                      value={formData[currentQuestion.id as keyof FormData]}
-                      onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
+                      value={formData[currentQuestion.id as keyof FormData] || ''}
+                      onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
                       onKeyPress={handleKeyPress}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                       autoComplete="off"
                     />
                   )}
@@ -263,14 +273,14 @@ export default function Contact() {
                       <input
                         type="email"
                         placeholder={currentQuestion.placeholder}
-                        value={formData[currentQuestion.id as keyof FormData]}
+                        value={formData[currentQuestion.id as keyof FormData] || ''}
                         onChange={(e) => {
-                          setFormData({ ...formData, [currentQuestion.id]: e.target.value });
+                          updateField(currentQuestion.id as keyof FormData, e.target.value);
                           if (emailError) validateEmail(e.target.value);
                         }}
                         onBlur={(e) => validateEmail(e.target.value)}
                         onKeyPress={handleKeyPress}
-                        className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                        className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                         autoComplete="email"
                       />
                       {emailError && (
@@ -281,9 +291,9 @@ export default function Contact() {
 
                   {currentQuestion.type === 'select' && (
                     <select
-                      value={formData[currentQuestion.id as keyof FormData]}
-                      onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light focus:outline-none focus:border-[#eaa509] transition-all duration-300 cursor-pointer"
+                      value={formData[currentQuestion.id as keyof FormData] || ''}
+                      onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
                     >
                       {currentQuestion.options?.map((option) => (
                         <option key={option} value={option} className="bg-black text-white">
@@ -296,10 +306,10 @@ export default function Contact() {
                   {currentQuestion.type === 'textarea' && (
                     <textarea
                       placeholder={currentQuestion.placeholder}
-                      value={formData[currentQuestion.id as keyof FormData]}
-                      onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
+                      value={formData[currentQuestion.id as keyof FormData] || ''}
+                      onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
                       rows={5}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-lg font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300 resize-none"
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-lg font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] resize-none"
                       autoComplete="off"
                     />
                   )}
