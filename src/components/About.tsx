@@ -11,22 +11,22 @@ export default function About() {
     'BROADCAST': {
       title: 'BROADCAST',
       image: '/DSC03782.jpg',
-      description: 'Over 5 years directing and editing for national broadcast television. From raw footage to polished episodes, I handle full post-production including color grading, sound design, and narrative pacing for shows aired on major networks like Sportsman Channel and World Fishing Network.'
+      description: '3 years directing and editing for national broadcast television. Full post-production on shows for Sportsman Channel and World Fishing Network—from raw footage to polished episodes with color grading, sound design, and narrative flow built for TV.'
     },
     'MARKETING': {
       title: 'MARKETING',
       image: '/1223 copy.png',
-      description: 'Strategic marketing campaigns that drive real results. Specializing in social media strategy, content marketing, and performance-driven advertising across digital platforms. Building brands that convert and scale through data-driven creative.'
+      description: 'Precision-built brands and strategic campaigns across social media, content marketing, and paid advertising. I create refined content and acquisition architectures engineered for performance and growth.'
     },
     'AI SYSTEMS': {
       title: 'AI SYSTEMS',
       image: '/n8nworkflow.png',
-      description: 'Building intelligent automation systems with n8n, Voiceflow, and custom AI integrations. From customer-facing AI agents to complex workflow automation that runs 24/7, turning manual processes into scalable, autonomous systems.'
+      description: 'AI automation systems that replace manual work and keep your business running 24/7. Sales agents, customer-facing agents, and workflow pipelines built with n8n, Voiceflow, and custom integrations—turning operations into scalable machines.'
     },
     'ADVERTISING': {
       title: 'ADVERTISING',
       image: '/LedcorExample_compressed.jpg',
-      description: 'Performance advertising specialist with experience in paid social, Amazon FBA, and e-commerce campaigns. Creating campaign films and commercial content for major brands like Ledcor, delivering ads that convert and scale revenue.'
+      description: 'Proven work in paid advertising, Amazon FBA, and e-commerce campaigns. Creating campaign films and commercial content for major brands—ads that look intentional, credible, and high-value while converting at scale.'
     }
   };
 
@@ -147,7 +147,7 @@ export default function About() {
             {/* Bio text */}
             <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm lg:text-base text-gray-400 font-light leading-relaxed">
               <p>
-                A multidisciplinary builder with five years of proven work across broadcast media, commercial production, design, ecommerce, paid advertising, Amazon FBA, and AI-powered business systems.
+                A multidisciplinary builder with proven work across broadcast media, commercial production, design, ecommerce, paid advertising, Amazon FBA, and AI-powered business systems.
               </p>
               <p className="text-[#eaa509] font-bold">
                 I create refined content, precision-built brands, and acquisition architectures engineered for performance.
