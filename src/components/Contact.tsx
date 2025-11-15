@@ -1,152 +1,26 @@
-import { useState, useCallback } from 'react';
-import { Send, CheckCircle2, ArrowRight, ArrowLeft, MessageSquare } from 'lucide-react';
+import { useState } from 'react';
+import { Send, CheckCircle2, Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
-interface FormData {
-  name: string;
-  email: string;
-  industry: string;
-  budget: string;
-  service: string;
-  notes: string;
-}
-
 export default function Contact() {
-  const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    industry: '',
-    budget: '',
-    service: '',
-    notes: ''
+    message: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [emailError, setEmailError] = useState('');
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  // Memoized update function to prevent re-renders
-  const updateField = useCallback((field: keyof FormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  }, []);
-
-  const questions = [
-    {
-      id: 'name',
-      question: "What's your name?",
-      placeholder: 'John Doe',
-      type: 'text' as const,
-    },
-    {
-      id: 'email',
-      question: "What's your email?",
-      placeholder: 'john@company.com',
-      type: 'email' as const,
-    },
-    {
-      id: 'industry',
-      question: "What's your industry?",
-      type: 'select' as const,
-      options: [
-        'Select an industry',
-        'Outdoor & Adventure',
-        'Construction & Architecture',
-        'Real Estate',
-        'Technology & Software',
-        'E-commerce & Retail',
-        'Food & Beverage',
-        'Healthcare',
-        'Education',
-        'Entertainment & Media',
-        'Other'
-      ]
-    },
-    {
-      id: 'budget',
-      question: "What's your budget range?",
-      type: 'select' as const,
-      options: [
-        'Select a budget range',
-        'Under $5,000',
-        '$5,000 - $10,000',
-        '$10,000 - $25,000',
-        '$25,000 - $50,000',
-        '$50,000+',
-        'Not sure yet'
-      ]
-    },
-    {
-      id: 'service',
-      question: 'What service interests you most?',
-      type: 'select' as const,
-      options: [
-        'Select a service',
-        'Video Production',
-        'Photography',
-        'Social Media Content',
-        'AI Automation',
-        'AI Content Production',
-        'Full Brand Package'
-      ]
-    },
-    {
-      id: 'notes',
-      question: 'Any additional notes? (Optional)',
-      placeholder: 'Tell us more about your project...',
-      type: 'textarea' as const,
-    }
-  ];
-
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setEmailError('Please enter a valid email address');
-      return false;
-    }
-    setEmailError('');
-    return true;
-  };
-
-  const canProceed = (): boolean => {
-    const currentQuestion = questions[currentStep];
-    const value = formData[currentQuestion.id as keyof FormData];
-
-    if (currentQuestion.id === 'notes') return true; // Optional field
-    if (currentQuestion.id === 'email') {
-      return value.trim() !== '' && validateEmail(value);
-    }
-    if (currentQuestion.type === 'select') {
-      return value !== '' && value !== questions[currentStep].options?.[0];
-    }
-    return value.trim() !== '';
-  };
-
-  const handleNext = () => {
-    if (!canProceed()) return;
-    
-    if (currentStep < questions.length - 1) {
-      setCurrentStep(prev => prev + 1);
-    } else {
-      handleSubmit();
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
-      setEmailError('');
-    }
-  };
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsSubmitting(true);
 
     const { error } = await supabase.from('contact_submissions').insert([
       {
         name: formData.name,
         email: formData.email,
-        message: `Industry: ${formData.industry}\nBudget: ${formData.budget}\nService: ${formData.service}\nNotes: ${formData.notes || 'None'}`
+        message: formData.message,
       },
     ]);
 
@@ -161,221 +35,173 @@ export default function Contact() {
 
     setTimeout(() => {
       setSubmitted(false);
-      setIsQuestionsOpen(false);
-      setCurrentStep(0);
-      setFormData({
-        name: '',
-        email: '',
-        industry: '',
-        budget: '',
-        service: '',
-        notes: ''
-      });
-    }, 5000);
+      setFormData({ name: '', email: '', message: '' });
+    }, 4000);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    try {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        if (canProceed()) {
-          handleNext();
-        }
-      }
-    } catch (error) {
-      console.error('Key press error:', error);
-    }
-  };
+  const isFormValid = formData.name && formData.email && formData.message;
 
-  const progressPercentage = ((currentStep + 1) / questions.length) * 100;
+  return (
+    <section
+      id="contact"
+      className="relative py-20 sm:py-24 md:py-32 min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1a0a0f] to-black"></div>
+      
+      {/* Animated glowing orbs */}
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#eaa509] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute top-1/3 -right-48 w-96 h-96 bg-[#f4c430] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute -bottom-32 left-1/2 w-96 h-96 bg-[#eaa509] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
-  const currentQuestion = questions[currentStep] || questions[0];
-
-  // Safety checks
-  if (!currentQuestion) {
-    console.error('No current question found');
-    return (
-      <section id="contact" className="relative py-20 min-h-screen flex items-center justify-center bg-black">
-        <div className="text-white text-center">
-          <p>Loading...</p>
-        </div>
-      </section>
-    );
-  }
-
-  try {
-    return (
-      <section
-        id="contact"
-        className="relative py-20 sm:py-24 md:py-32 contact-section min-h-screen flex items-center justify-center"
-      >
-      {/* Optimized gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-black to-black"></div>
-
-      {/* Subtle accent glow - hidden on touch devices for performance */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#eaa509]/5 blur-[120px] pointer-events-none hidden md:block"></div>
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(233,168,32,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(233,168,32,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
 
       {/* Content */}
       <div className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        {!isQuestionsOpen && !submitted ? (
-          // Initial state - Send Message button
-          <div className="text-center space-y-8">
-            <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight">
-              LET'S CONNECT
-            </h2>
-            <div className="w-20 h-1 bg-[#eaa509] mx-auto"></div>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto">
-              Ready to create something extraordinary? Let's start with a few quick questions.
-            </p>
-            <button
-              onClick={() => setIsQuestionsOpen(true)}
-              className="group relative inline-flex items-center gap-3 bg-[#eaa509] hover:bg-[#eaa509]/90 transition-all duration-300 px-10 py-6 mt-8"
-            >
-              <MessageSquare className="w-6 h-6 text-black" />
-              <span className="text-black font-bold text-lg tracking-wider">
-                START CONVERSATION
-              </span>
-              <ArrowRight className="w-6 h-6 text-black group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-        ) : !submitted ? (
-          // Interactive questionnaire
-          <div className="max-w-3xl mx-auto">
-            {/* Progress bar */}
-            <div className="mb-12">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-sm text-gray-500 font-medium">
-                  Question {currentStep + 1} of {questions.length}
-                </span>
+        {!submitted ? (
+          <div className="space-y-12">
+            {/* Header */}
+            <div className="text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#eaa509]/10 border border-[#eaa509]/20 rounded-full">
+                <Sparkles className="w-4 h-4 text-[#eaa509]" />
+                <span className="text-[#eaa509] text-sm font-semibold tracking-wider">GET IN TOUCH</span>
               </div>
-              <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-[#eaa509]"
-                  style={{ width: progressPercentage + '%' }}
-                ></div>
-              </div>
+              
+              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight">
+                LET'S<br/>
+                <span className="text-[#eaa509]">CONNECT</span>
+              </h2>
+              
+              <p className="text-lg sm:text-xl text-gray-400 font-light max-w-2xl mx-auto">
+                Ready to create something extraordinary? Drop us a message and let's make it happen.
+              </p>
             </div>
 
-            {/* Question */}
-            <div className="space-y-8" key={`question-${currentStep}`}>
-                {/* Question */}
-                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-                  {currentQuestion.question}
-                </h3>
-
-                {/* Answer input */}
-                <div className="space-y-3">
-                  {currentQuestion.type === 'text' && (
+            {/* Form Card */}
+            <form onSubmit={handleSubmit} className="relative group">
+              {/* Card glow effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#eaa509] to-[#f4c430] rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+              
+              {/* Card */}
+              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-8 sm:p-12 space-y-8">
+                {/* Name Field */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-400 uppercase tracking-wider">
+                    Your Name
+                  </label>
+                  <div className="relative">
                     <input
-                      key={`text-${currentStep}`}
                       type="text"
-                      placeholder={currentQuestion.placeholder}
-                      value={formData[currentQuestion.id as keyof FormData] || ''}
-                      onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
-                      autoComplete="off"
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onFocus={() => setFocusedField('name')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white text-lg placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
                     />
-                  )}
-
-                  {currentQuestion.type === 'email' && (
-                    <>
-                      <input
-                        key={`email-${currentStep}`}
-                        type="email"
-                        placeholder={currentQuestion.placeholder}
-                        value={formData[currentQuestion.id as keyof FormData] || ''}
-                        onChange={(e) => {
-                          updateField(currentQuestion.id as keyof FormData, e.target.value);
-                          if (emailError) validateEmail(e.target.value);
-                        }}
-                        onBlur={(e) => validateEmail(e.target.value)}
-                        className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
-                        autoComplete="email"
-                      />
-                      {emailError && (
-                        <p className="text-red-400 text-sm mt-2">{emailError}</p>
-                      )}
-                    </>
-                  )}
-
-                  {currentQuestion.type === 'select' && (
-                    <select
-                      key={`select-${currentStep}`}
-                      value={formData[currentQuestion.id as keyof FormData] || ''}
-                      onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
-                    >
-                      {currentQuestion.options?.map((option) => (
-                        <option key={option} value={option} className="bg-black text-white">
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-
-                  {currentQuestion.type === 'textarea' && (
-                    <textarea
-                      key={`textarea-${currentStep}`}
-                      placeholder={currentQuestion.placeholder}
-                      value={formData[currentQuestion.id as keyof FormData] || ''}
-                      onChange={(e) => updateField(currentQuestion.id as keyof FormData, e.target.value)}
-                      rows={5}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-lg font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] resize-none"
-                      autoComplete="off"
-                    />
-                  )}
+                    {focusedField === 'name' && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent"></div>
+                    )}
+                  </div>
                 </div>
 
-                {/* Navigation */}
-                <div className="flex gap-4 pt-8">
-                  {currentStep > 0 && (
-                    <button
-                      onClick={handleBack}
-                      className="flex items-center gap-2 px-6 py-4 border-2 border-white/20 text-white hover:border-[#eaa509] hover:text-[#eaa509] transition-all duration-300 font-medium"
-                    >
-                      <ArrowLeft className="w-5 h-5" />
-                      Back
-                    </button>
-                  )}
+                {/* Email Field */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-400 uppercase tracking-wider">
+                    Email Address
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="email"
+                      placeholder="john@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white text-lg placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                    />
+                    {focusedField === 'email' && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent"></div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Message Field */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-400 uppercase tracking-wider">
+                    Your Message
+                  </label>
+                  <div className="relative">
+                    <textarea
+                      placeholder="Tell us about your project..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onFocus={() => setFocusedField('message')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      rows={6}
+                      className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white text-lg placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] transition-all duration-300 resize-none"
+                    />
+                    {focusedField === 'message' && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent"></div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={!isFormValid || isSubmitting}
+                  className="group relative w-full overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#eaa509] to-[#f4c430]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#f4c430] to-[#eaa509] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
-                  <button
-                    onClick={handleNext}
-                    disabled={!canProceed() || isSubmitting}
-                    className="flex-1 flex items-center justify-center gap-2 px-8 py-4 bg-[#eaa509] hover:bg-[#eaa509]/90 disabled:opacity-40 disabled:cursor-not-allowed text-black font-bold transition-all duration-300"
-                  >
+                  <span className="relative flex items-center justify-center gap-3 text-black font-bold text-lg px-8 py-5">
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
-                        Submitting...
-                      </>
-                    ) : currentStep === questions.length - 1 ? (
-                      <>
-                        Submit
-                        <Send className="w-5 h-5" />
+                        <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                        SENDING...
                       </>
                     ) : (
                       <>
-                        Next
-                        <ArrowRight className="w-5 h-5" />
+                        SEND MESSAGE
+                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                       </>
                     )}
-                  </button>
-                </div>
-            </div>
+                  </span>
+                </button>
+              </div>
+            </form>
           </div>
         ) : (
           // Success state
-          <div className="text-center space-y-8 animate-fade-in">
-            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[#eaa509]/20">
-              <CheckCircle2 className="w-12 h-12 text-[#eaa509]" strokeWidth={2} />
+          <div className="text-center space-y-8 py-20">
+            <div className="relative inline-flex">
+              {/* Pulsing rings */}
+              <div className="absolute inset-0 rounded-full bg-[#eaa509] animate-ping opacity-20"></div>
+              <div className="absolute inset-0 rounded-full bg-[#eaa509]/30 animate-pulse"></div>
+              
+              {/* Icon container */}
+              <div className="relative flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-[#eaa509] to-[#f4c430] shadow-2xl shadow-[#eaa509]/50">
+                <CheckCircle2 className="w-16 h-16 text-black" strokeWidth={3} />
+              </div>
             </div>
+            
             <div className="space-y-4">
-              <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-white">
-                THANK YOU!
+              <h3 className="text-5xl sm:text-6xl md:text-7xl font-black text-white">
+                MESSAGE<br/>
+                <span className="text-[#eaa509]">SENT!</span>
               </h3>
-              <div className="w-20 h-1 bg-[#eaa509] mx-auto"></div>
-              <p className="text-xl sm:text-2xl text-gray-400 font-light">
-                Thanks for reaching out, {formData.name}.<br />We'll be in touch soon!
+              
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent mx-auto"></div>
+              
+              <p className="text-xl sm:text-2xl text-gray-400 font-light max-w-lg mx-auto">
+                Thanks for reaching out, <span className="text-white font-semibold">{formData.name}</span>!<br />
+                We'll get back to you soon.
               </p>
             </div>
           </div>
@@ -383,58 +209,41 @@ export default function Contact() {
       </div>
 
       <style>{`
-        .contact-section {
-          scroll-margin-top: 100px;
-        }
-
-        /* Custom select arrow */
-        select {
-          appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23eaa509' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 0.5rem center;
-          background-size: 1.5em 1.5em;
-          padding-right: 2.5rem;
-        }
-
-        /* Mobile/iPad optimization */
-        @supports (-webkit-touch-callout: none) {
-          .contact-section {
-            min-height: -webkit-fill-available;
+        /* Blob animation for floating orbs */
+        @keyframes blob {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
           }
-          
-          input, textarea, select {
+          25% {
+            transform: translate(20px, -50px) scale(1.1);
+          }
+          50% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          75% {
+            transform: translate(50px, 50px) scale(1.05);
+          }
+        }
+
+        .animate-blob {
+          animation: blob 20s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+
+        /* iOS optimization */
+        @supports (-webkit-touch-callout: none) {
+          input, textarea {
             font-size: 16px !important;
           }
         }
-
-        /* Success animation */
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 0.4s ease-out forwards;
-        }
       `}</style>
     </section>
-    );
-  } catch (error) {
-    console.error('Contact component render error:', error);
-    return (
-      <section id="contact" className="relative py-20 min-h-screen flex items-center justify-center bg-black">
-        <div className="text-white text-center p-8">
-          <h2 className="text-3xl font-bold mb-4">LET'S CONNECT</h2>
-          <p className="text-gray-400">Please refresh the page or contact us directly.</p>
-        </div>
-      </section>
-    );
-  }
+  );
 }
