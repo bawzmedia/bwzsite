@@ -59,13 +59,21 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
         onClick={handleClose}
       ></div>
 
-      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#1b032a] to-black border-2 border-[#E9A820]/30 rounded-lg shadow-2xl overflow-hidden animate-slide-up">
+      <div 
+        className="relative w-full max-w-2xl bg-gradient-to-b from-[#1b032a] to-black border-2 border-[#E9A820]/30 rounded-lg shadow-2xl overflow-hidden animate-slide-up"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
-          onClick={handleClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleClose();
+          }}
           disabled={isSubmitting}
-          className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="absolute top-4 right-4 z-50 w-12 h-12 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+          style={{ WebkitTapHighlightColor: 'transparent' }}
+          aria-label="Close modal"
         >
-          <X className="w-5 h-5 text-white" />
+          <X className="w-6 h-6 sm:w-5 sm:h-5 text-white" />
         </button>
 
         <div className="p-6 sm:p-8 md:p-12">
