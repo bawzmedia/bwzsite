@@ -26,11 +26,11 @@ export default function BrandShowcase() {
             <BlurredInfiniteSlider
               speedOnHover={20}
               speed={40}
-              gap={160}
+              gap={60}
               fadeWidth={80}
             >
               {brands.map((brand) => (
-                <div key={brand.name} className="flex items-center justify-center h-16 md:h-auto px-8">
+                <div key={brand.name} className="flex items-center justify-center h-16 md:h-auto px-2 sm:px-4 md:px-8">
                   <img
                     className="max-h-full w-auto object-contain"
                     src={brand.logo}
