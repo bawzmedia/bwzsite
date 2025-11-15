@@ -116,8 +116,16 @@ export default function Contact() {
   }, []);
 
   useEffect(() => {
-    if (isQuestionsOpen && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 300);
+    // Don't auto-focus on touch devices (iPad/mobile) to prevent crashes
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isQuestionsOpen && inputRef.current && !isTouchDevice) {
+      setTimeout(() => {
+        try {
+          inputRef.current?.focus();
+        } catch (e) {
+          console.log('Focus failed:', e);
+        }
+      }, 300);
     }
   }, [currentStep, isQuestionsOpen]);
 
@@ -216,13 +224,13 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-20 sm:py-24 md:py-32 will-change-auto contact-section min-h-screen flex items-center justify-center"
+      className="relative py-20 sm:py-24 md:py-32 contact-section min-h-screen flex items-center justify-center"
     >
       {/* Optimized gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-black to-black"></div>
 
-      {/* Subtle accent glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#eaa509]/5 blur-[120px] pointer-events-none"></div>
+      {/* Subtle accent glow - hidden on touch devices for performance */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#eaa509]/5 blur-[120px] pointer-events-none hidden md:block"></div>
 
       {/* Content */}
       <div className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -268,12 +276,8 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Question with fade transition */}
-            <div 
-              className="question-container"
-              key={currentStep}
-            >
-              <div className="space-y-8">
+            {/* Question */}
+            <div className="space-y-8">
                 {/* Question */}
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
                   {currentQuestion.question}
@@ -289,7 +293,8 @@ export default function Contact() {
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
                       onKeyPress={handleKeyPress}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                      style={{ fontSize: '16px' }}
                     />
                   )}
 
@@ -306,7 +311,8 @@ export default function Contact() {
                         }}
                         onBlur={(e) => validateEmail(e.target.value)}
                         onKeyPress={handleKeyPress}
-                        className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                        className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
+                        style={{ fontSize: '16px' }}
                       />
                       {emailError && (
                         <p className="text-red-400 text-sm mt-2 animate-fade-in">{emailError}</p>
@@ -319,7 +325,8 @@ export default function Contact() {
                       ref={inputRef as React.RefObject<HTMLSelectElement>}
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-2xl font-light focus:outline-none focus:border-[#eaa509] transition-all duration-300 cursor-pointer"
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl sm:text-2xl font-light focus:outline-none focus:border-[#eaa509] transition-all duration-300 cursor-pointer"
+                      style={{ fontSize: '16px' }}
                     >
                       {currentQuestion.options?.map((option) => (
                         <option key={option} value={option} className="bg-black text-white">
@@ -336,7 +343,8 @@ export default function Contact() {
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
                       rows={5}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300 resize-none"
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-6 text-white text-lg font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] transition-all duration-300 resize-none"
+                      style={{ fontSize: '16px' }}
                     />
                   )}
                 </div>
@@ -381,7 +389,6 @@ export default function Contact() {
                 <p className="text-sm text-gray-600 text-center">
                   Press <kbd className="px-2 py-1 bg-white/10 rounded text-white">Enter</kbd> to continue
                 </p>
-              </div>
             </div>
           </div>
         ) : (
@@ -416,11 +423,6 @@ export default function Contact() {
           opacity: 1;
         }
 
-        /* Question container fade transitions */
-        .question-container {
-          animation: fadeIn 0.5s ease-out forwards;
-        }
-
         @keyframes slideUp {
           from {
             opacity: 0;
@@ -447,13 +449,6 @@ export default function Contact() {
           animation: fadeIn 0.6s ease-out forwards;
         }
 
-        /* Smooth scroll optimization */
-        @media (prefers-reduced-motion: no-preference) {
-          .contact-section {
-            will-change: transform;
-          }
-        }
-
         /* Custom select arrow */
         select {
           appearance: none;
@@ -462,6 +457,17 @@ export default function Contact() {
           background-position: right 0.5rem center;
           background-size: 1.5em 1.5em;
           padding-right: 2.5rem;
+        }
+
+        /* iPad optimization - prevent white screen */
+        @supports (-webkit-touch-callout: none) {
+          .contact-section {
+            min-height: -webkit-fill-available;
+          }
+          
+          input, textarea, select {
+            font-size: 16px; /* Prevent zoom on iOS */
+          }
         }
       `}</style>
     </section>
