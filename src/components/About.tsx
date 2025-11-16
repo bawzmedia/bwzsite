@@ -31,7 +31,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="relative min-h-screen bg-black overflow-hidden flex items-center py-12 sm:py-16 md:py-20">
+    <section id="about" className="relative min-h-screen bg-black overflow-hidden flex items-center py-12 sm:py-16 md:py-20 isolate">
       {/* Animated AI grid background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#1b032a]/10 animate-pulse-slow"></div>
@@ -55,16 +55,16 @@ export default function About() {
         />
       ))}
 
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 w-full flex items-center">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 w-full flex items-center z-10">
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center w-full">
           {/* Left - AI Profile Image */}
           <div
-            className="relative"
+            className="relative z-10"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
             {/* Main image container */}
-            <div className="relative w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] mx-auto aspect-square">
+            <div className="relative w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] mx-auto aspect-square z-10">
               {/* Glowing border rings */}
               <div
                 className="absolute inset-0 rounded-full transition-all duration-700"
@@ -119,11 +119,11 @@ export default function About() {
               ></div>
 
               {/* Floating badges */}
-              <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-6 md:-right-6 p-2 sm:p-3 md:p-4 bg-[#1b032a] rounded-full shadow-2xl shadow-[#1b032a]/50 animate-float">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
+              <div className="absolute top-0 right-0 sm:-top-3 sm:-right-3 md:-top-6 md:-right-6 p-2 sm:p-3 md:p-4 bg-[#1b032a] rounded-full shadow-2xl shadow-[#1b032a]/50 animate-float z-10">
+                <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
               </div>
-              <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 md:-bottom-6 md:-left-6 p-2 sm:p-3 md:p-4 bg-[#eaa509] rounded-full shadow-2xl shadow-[#eaa509]/50 animate-float" style={{ animationDelay: '1.5s' }}>
-                <Zap className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-black" />
+              <div className="absolute bottom-0 left-0 sm:-bottom-3 sm:-left-3 md:-bottom-6 md:-left-6 p-2 sm:p-3 md:p-4 bg-[#eaa509] rounded-full shadow-2xl shadow-[#eaa509]/50 animate-float z-10" style={{ animationDelay: '1.5s' }}>
+                <Zap className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 text-black" />
               </div>
             </div>
           </div>
@@ -198,14 +198,14 @@ export default function About() {
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
 
-      {/* Expertise Popup - Small, positioned at bottom right */}
+      {/* Expertise Popup - Small, positioned strategically */}
       {selectedExpertise && expertiseDetails[selectedExpertise as keyof typeof expertiseDetails] && (
         <div 
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:justify-end p-4 animate-fade-in"
+          className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:p-4 sm:items-center sm:justify-end animate-fade-in bg-black/60 sm:bg-transparent"
           onClick={() => setSelectedExpertise(null)}
         >
           <div
-            className="relative w-full sm:w-96 bg-gradient-to-br from-[#1b032a] to-black border-2 border-[#E9A820] rounded-lg shadow-2xl overflow-hidden animate-slide-up"
+            className="relative w-full sm:w-96 sm:max-w-md bg-gradient-to-br from-[#1b032a] to-black border-t-2 sm:border-2 border-[#E9A820] sm:rounded-lg shadow-2xl overflow-hidden animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -214,15 +214,15 @@ export default function About() {
                 e.stopPropagation();
                 setSelectedExpertise(null);
               }}
-              className="absolute top-3 right-3 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors touch-manipulation"
+              className="absolute top-3 right-3 z-[110] w-12 h-12 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors touch-manipulation"
               style={{ WebkitTapHighlightColor: 'transparent' }}
               aria-label="Close"
             >
-              <X className="w-5 h-5 text-white" />
+              <X className="w-6 h-6 sm:w-5 sm:h-5 text-white" />
             </button>
 
             {/* Image */}
-            <div className="relative h-32 overflow-hidden">
+            <div className="relative h-40 sm:h-32 overflow-hidden">
               <img
                 src={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].image}
                 alt={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
@@ -232,11 +232,11 @@ export default function About() {
             </div>
 
             {/* Content */}
-            <div className="p-6">
-              <h3 className="text-2xl font-black text-[#E9A820] mb-3">
+            <div className="p-6 sm:p-6">
+              <h3 className="text-xl sm:text-2xl font-black text-[#E9A820] mb-3">
                 {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
               </h3>
-              <p className="text-sm text-gray-300 leading-relaxed">
+              <p className="text-sm sm:text-sm text-gray-300 leading-relaxed">
                 {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].description}
               </p>
             </div>
@@ -258,7 +258,7 @@ export default function About() {
         @keyframes slide-up {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(100%);
           }
           to {
             opacity: 1;
@@ -267,6 +267,19 @@ export default function About() {
         }
         .animate-slide-up {
           animation: slide-up 0.3s ease-out forwards;
+        }
+
+        @media (min-width: 640px) {
+          @keyframes slide-up {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
         }
       `}</style>
     </section>
