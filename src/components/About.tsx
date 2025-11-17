@@ -198,54 +198,44 @@ export default function About() {
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
 
-      {/* Expertise Popup - Clean modal overlay */}
-      {selectedExpertise && expertiseDetails[selectedExpertise as keyof typeof expertiseDetails] && (
+      {/* Expertise Popup - Simplified for iPad stability */}
+      {selectedExpertise && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in bg-black/90"
+          className="fixed inset-0 z-[100] bg-black/90"
           onClick={() => setSelectedExpertise(null)}
         >
-          <div
-            className="relative w-full max-w-sm bg-gradient-to-br from-[#1b032a] to-black border-2 border-[#E9A820] rounded-lg shadow-2xl overflow-hidden animate-slide-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setSelectedExpertise(null);
-              }}
-              onTouchEnd={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setSelectedExpertise(null);
-              }}
-              className="absolute top-3 right-3 z-[110] w-14 h-14 flex items-center justify-center rounded-full bg-[#E9A820] active:bg-[#E9A820]/80"
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-              aria-label="Close"
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-sm">
+            <div
+              className="relative bg-black border-4 border-[#E9A820] rounded-xl shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-7 h-7 text-black font-bold" strokeWidth={3} />
-            </button>
+              {/* Close button - Simple and obvious */}
+              <button
+                onClick={() => setSelectedExpertise(null)}
+                className="absolute -top-4 -right-4 w-16 h-16 flex items-center justify-center rounded-full bg-[#E9A820] shadow-lg"
+                aria-label="Close"
+              >
+                <X className="w-8 h-8 text-black" strokeWidth={4} />
+              </button>
 
-            {/* Image */}
-            <div className="relative h-40 overflow-hidden">
-              <img
-                src={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].image}
-                alt={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-            </div>
+              {/* Image */}
+              <div className="relative h-40 overflow-hidden rounded-t-lg">
+                <img
+                  src={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].image}
+                  alt={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-            {/* Content */}
-            <div className="p-6">
-              <h3 className="text-2xl font-black text-[#E9A820] mb-3">
-                {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
-              </h3>
-              <p className="text-sm text-gray-300 leading-relaxed">
-                {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].description}
-              </p>
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-2xl font-black text-[#E9A820] mb-3">
+                  {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
+                </h3>
+                <p className="text-sm text-gray-300 leading-relaxed">
+                  {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].description}
+                </p>
+              </div>
             </div>
           </div>
         </div>
