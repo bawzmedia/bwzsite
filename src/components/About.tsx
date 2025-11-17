@@ -198,14 +198,14 @@ export default function About() {
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
 
-      {/* Expertise Popup - Small, positioned strategically */}
+      {/* Expertise Popup - Clean modal overlay */}
       {selectedExpertise && expertiseDetails[selectedExpertise as keyof typeof expertiseDetails] && (
         <div 
-          className="fixed inset-0 z-[100] flex items-end justify-center p-0 sm:p-4 sm:items-center sm:justify-end animate-fade-in bg-black/60 sm:bg-transparent"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in bg-black/80 backdrop-blur-sm"
           onClick={() => setSelectedExpertise(null)}
         >
           <div
-            className="relative w-full sm:w-96 sm:max-w-md bg-gradient-to-br from-[#1b032a] to-black border-t-2 sm:border-2 border-[#E9A820] sm:rounded-lg shadow-2xl overflow-hidden animate-slide-up"
+            className="relative w-full max-w-sm bg-gradient-to-br from-[#1b032a] to-black border-2 border-[#E9A820] rounded-lg shadow-2xl overflow-hidden animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -214,15 +214,15 @@ export default function About() {
                 e.stopPropagation();
                 setSelectedExpertise(null);
               }}
-              className="absolute top-3 right-3 z-[110] w-12 h-12 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors touch-manipulation"
+              className="absolute top-3 right-3 z-[110] w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors touch-manipulation"
               style={{ WebkitTapHighlightColor: 'transparent' }}
               aria-label="Close"
             >
-              <X className="w-6 h-6 sm:w-5 sm:h-5 text-white" />
+              <X className="w-6 h-6 text-white" />
             </button>
 
             {/* Image */}
-            <div className="relative h-40 sm:h-32 overflow-hidden">
+            <div className="relative h-40 overflow-hidden">
               <img
                 src={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].image}
                 alt={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
@@ -232,11 +232,11 @@ export default function About() {
             </div>
 
             {/* Content */}
-            <div className="p-6 sm:p-6">
-              <h3 className="text-xl sm:text-2xl font-black text-[#E9A820] mb-3">
+            <div className="p-6">
+              <h3 className="text-2xl font-black text-[#E9A820] mb-3">
                 {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
               </h3>
-              <p className="text-sm sm:text-sm text-gray-300 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].description}
               </p>
             </div>
@@ -258,28 +258,15 @@ export default function About() {
         @keyframes slide-up {
           from {
             opacity: 0;
-            transform: translateY(100%);
+            transform: translateY(30px) scale(0.95);
           }
           to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
           }
         }
         .animate-slide-up {
           animation: slide-up 0.3s ease-out forwards;
-        }
-
-        @media (min-width: 640px) {
-          @keyframes slide-up {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
         }
       `}</style>
     </section>
