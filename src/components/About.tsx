@@ -53,11 +53,11 @@ export default function About() {
                 <div className="w-full h-full bg-black rounded-full"></div>
               </div>
 
-              {/* Image placeholder with AI effect */}
+              {/* Profile Image */}
               <div className="absolute inset-3 rounded-full overflow-hidden border-4 border-black">
                 <img
-                  src="/Gemini_Generated_Image_un631jun631jun63.jpg"
-                  alt="Profile"
+                  src="/Professional Profile Photo Instagram Post .png"
+                  alt="Ahmed Bawazir - Founder & Creative Director"
                   className="w-full h-full object-cover transition-all duration-700"
                   style={{
                     filter: isHovered ? 'grayscale(0%) brightness(1.1)' : 'grayscale(20%) brightness(0.9)',
