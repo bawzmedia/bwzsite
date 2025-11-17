@@ -201,7 +201,7 @@ export default function About() {
       {/* Expertise Popup - Clean modal overlay */}
       {selectedExpertise && expertiseDetails[selectedExpertise as keyof typeof expertiseDetails] && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in bg-black/90"
           onClick={() => setSelectedExpertise(null)}
         >
           <div
@@ -210,15 +210,22 @@ export default function About() {
           >
             {/* Close button */}
             <button
+              type="button"
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 setSelectedExpertise(null);
               }}
-              className="absolute top-3 right-3 z-[110] w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors touch-manipulation"
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setSelectedExpertise(null);
+              }}
+              className="absolute top-3 right-3 z-[110] w-14 h-14 flex items-center justify-center rounded-full bg-[#E9A820] active:bg-[#E9A820]/80"
               style={{ WebkitTapHighlightColor: 'transparent' }}
               aria-label="Close"
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-7 h-7 text-black font-bold" strokeWidth={3} />
             </button>
 
             {/* Image */}
