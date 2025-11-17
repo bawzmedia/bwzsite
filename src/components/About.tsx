@@ -1,34 +1,10 @@
 import { useState } from 'react';
-import { Sparkles, Zap, Target, Award, X } from 'lucide-react';
+import { Sparkles, Zap, Target, Award } from 'lucide-react';
 import LeadCaptureModal from './LeadCaptureModal';
 
 export default function About() {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedExpertise, setSelectedExpertise] = useState<string | null>(null);
-
-  const expertiseDetails = {
-    'BROADCAST': {
-      title: 'BROADCAST',
-      image: '/DSC03782.jpg',
-      description: '3 years directing and editing for national broadcast television. Full post-production on shows for Sportsman Channel and World Fishing Network—from raw footage to polished episodes with color grading, sound design, and narrative flow built for TV.'
-    },
-    'MARKETING': {
-      title: 'MARKETING',
-      image: '/1223 copy.png',
-      description: 'Precision-built brands and strategic campaigns across social media, content marketing, and paid advertising. I create refined content and acquisition architectures engineered for performance and growth.'
-    },
-    'AI SYSTEMS': {
-      title: 'AI SYSTEMS',
-      image: '/n8nworkflow.png',
-      description: 'AI automation systems that replace manual work and keep your business running 24/7. Sales agents, customer-facing agents, and workflow pipelines built with n8n, Voiceflow, and custom integrations—turning operations into scalable machines.'
-    },
-    'BRAND DEVELOPMENT': {
-      title: 'BRAND DEVELOPMENT',
-      image: '/LedcorExample_compressed.jpg',
-      description: 'Building complete brand identities from concept to execution. Visual systems, messaging strategy, and market positioning that make brands look credible, intentional, and built to scale. From local businesses to national campaigns.'
-    }
-  };
 
   return (
     <section id="about" className="relative min-h-screen bg-black overflow-hidden flex items-center py-12 sm:py-16 md:py-20 isolate">
@@ -165,15 +141,14 @@ export default function About() {
                 { icon: Sparkles, label: 'AI SYSTEMS' },
                 { icon: Zap, label: 'BRAND DEVELOPMENT' },
               ].map((item, index) => (
-                <button
+                <div
                   key={index}
-                  onClick={() => setSelectedExpertise(item.label)}
-                  className="group relative p-2 sm:p-3 md:p-4 border border-white/10 sm:border-2 hover:border-[#E9A820] transition-all duration-300 hover:-translate-y-1 cursor-pointer flex items-center justify-center"
+                  className="group relative p-2 sm:p-3 md:p-4 border border-white/10 sm:border-2 hover:border-[#E9A820] transition-all duration-300 flex items-center justify-center"
                 >
                   <div className="text-center">
                     <div className="text-xs sm:text-sm md:text-base lg:text-xl font-black text-white tracking-tight">{item.label}</div>
                   </div>
-                </button>
+                </div>
               ))}
             </div>
 
@@ -198,74 +173,7 @@ export default function About() {
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
 
-      {/* Expertise Popup - Simplified for iPad stability */}
-      {selectedExpertise && (
-        <div 
-          className="fixed inset-0 z-[100] bg-black/90"
-          onClick={() => setSelectedExpertise(null)}
-        >
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-sm">
-            <div
-              className="relative bg-black border-4 border-[#E9A820] rounded-xl shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close button - Simple and obvious */}
-              <button
-                onClick={() => setSelectedExpertise(null)}
-                className="absolute -top-4 -right-4 w-16 h-16 flex items-center justify-center rounded-full bg-[#E9A820] shadow-lg"
-                aria-label="Close"
-              >
-                <X className="w-8 h-8 text-black" strokeWidth={4} />
-              </button>
-
-              {/* Image */}
-              <div className="relative h-40 overflow-hidden rounded-t-lg">
-                <img
-                  src={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].image}
-                  alt={expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-2xl font-black text-[#E9A820] mb-3">
-                  {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].title}
-                </h3>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  {expertiseDetails[selectedExpertise as keyof typeof expertiseDetails].description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       <LeadCaptureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-      <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.2s ease-out forwards;
-        }
-
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out forwards;
-        }
-      `}</style>
     </section>
   );
 }
