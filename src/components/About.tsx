@@ -60,7 +60,7 @@ export default function About() {
                   alt="Ahmed Bawazir - Founder & Creative Director"
                   className="w-full h-full object-cover transition-all duration-700"
                   style={{
-                    filter: isHovered ? 'grayscale(0%) brightness(1.1)' : 'grayscale(20%) brightness(0.9)',
+                    filter: isHovered ? 'grayscale(0%) brightness(1.1)' : 'grayscale(0%) brightness(1)',
                   }}
                 />
                 {/* AI scan lines overlay */}
