@@ -18,7 +18,7 @@ export default function VideoPoster() {
       <div className="absolute top-8 sm:top-12 md:top-20 left-0 right-0 flex justify-center pointer-events-none z-30">
         <div className="text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
-            <span className="block text-[#1b032a] drop-shadow-[0_0_40px_rgba(27,3,42,0.8)]" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            <span className="block text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.8)]" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
               WORLD CLASS
             </span>
             <span className="block text-[#eaa509] drop-shadow-[0_0_60px_rgba(234,168,32,0.6)] mt-2">
