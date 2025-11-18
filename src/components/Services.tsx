@@ -114,7 +114,7 @@ export default function Services() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-2xl font-black text-white mb-3 leading-none">
+                  <h2 className="text-2xl font-black text-white mb-3 leading-none whitespace-nowrap">
                     {service.title}
                   </h2>
 
@@ -224,7 +224,7 @@ export default function Services() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-4xl md:text-5xl font-black text-white mb-3 leading-none">
+                  <h2 className="text-4xl md:text-5xl font-black text-white mb-3 leading-none whitespace-nowrap">
                     {service.title}
                   </h2>
 
