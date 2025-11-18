@@ -16,12 +16,16 @@ export default function VideoPoster() {
 
       {/* Content - Centered Text Above TV */}
       <div className="absolute top-8 sm:top-12 md:top-20 left-0 right-0 flex justify-center pointer-events-none z-30">
-        <div className="text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
-            <span className="block text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.8)]" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+        <div className="relative text-center px-4 sm:px-6 lg:px-8">
+          {/* Solid soft glow behind text */}
+          <div className="absolute inset-0 -inset-x-8 -inset-y-4 bg-white/10 blur-3xl rounded-full"></div>
+          
+          {/* Text content */}
+          <h2 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight">
+            <span className="block text-white">
               WORLD CLASS
             </span>
-            <span className="block text-[#eaa509] drop-shadow-[0_0_60px_rgba(234,168,32,0.6)] mt-2">
+            <span className="block text-[#eaa509] mt-2">
               AI VIDEO PRODUCTION
             </span>
           </h2>
