@@ -191,64 +191,64 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95">
       {/* Close backdrop */}
       <div className="absolute inset-0" onClick={handleClose}></div>
 
-      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#1b032a] to-black border-2 border-[#E9A820] rounded-xl shadow-2xl overflow-hidden">
+      <div className="relative w-full h-screen max-w-5xl flex flex-col">
         {/* Close button */}
         <button
           onClick={handleClose}
           disabled={isSubmitting}
-          className="absolute top-4 right-4 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#E9A820]/20 active:bg-[#E9A820]/30 transition-colors disabled:opacity-50"
+          className="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-[#E9A820] hover:bg-[#E9A820]/80 transition-colors disabled:opacity-50"
           aria-label="Close"
         >
-          <X className="w-6 h-6 text-white" />
+          <X className="w-6 h-6 text-black" strokeWidth={3} />
         </button>
 
-        <div className="p-8 sm:p-12">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 max-w-3xl w-full mx-auto">
           {!submitted ? (
             <>
-              {/* Progress bar */}
-              <div className="mb-8">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-sm text-gray-400 font-medium">
-                    Step {currentStep + 1} of {questions.length}
+              {/* Progress bar - compact */}
+              <div className="w-full mb-12">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-xs text-gray-500 font-medium">
+                    {currentStep + 1}/{questions.length}
                   </span>
-                  <span className="text-sm text-[#eaa509] font-medium">
+                  <span className="text-xs text-[#eaa509] font-medium">
                     {Math.round(progressPercentage)}%
                   </span>
                 </div>
-                <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-[#eaa509] to-[#f4c430] transition-all duration-300"
+                    className="h-full bg-[#eaa509] transition-all duration-300"
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
               </div>
 
-              {/* Question */}
-              <div className="mb-8">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
+              {/* Question - Large and centered */}
+              <div className="w-full mb-8">
+                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 text-center leading-none">
                   {currentQuestion.question}
                 </h3>
 
-                {/* Input field */}
+                {/* Input field - Large and centered */}
                 {currentQuestion.type === 'text' && (
-                  <div>
+                  <div className="text-center">
                     <input
                       type="text"
                       placeholder={currentQuestion.placeholder}
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-xl font-light placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509]"
+                      className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-3xl sm:text-4xl md:text-5xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                       autoComplete="off"
                     />
                     {currentQuestion.id === 'contactInfo' && (
-                      <p className="text-sm text-gray-500 mt-2">
+                      <p className="text-sm text-gray-500 mt-4">
                         {formData.contactInfo && !isValidContact(formData.contactInfo) 
                           ? '⚠️ Please enter a valid email or phone number'
-                          : 'Enter your email or phone number'}
+                          : 'Email or phone number'}
                       </p>
                     )}
                   </div>
@@ -258,10 +258,10 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                   <select
                     value={formData[currentQuestion.id as keyof FormData]}
                     onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                    className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
+                    className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-2xl sm:text-3xl md:text-4xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
                   >
                     {currentQuestion.options?.map((option) => (
-                      <option key={option} value={option} className="bg-black">
+                      <option key={option} value={option} className="bg-black text-lg">
                         {option}
                       </option>
                     ))}
@@ -273,16 +273,16 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                     placeholder={currentQuestion.placeholder}
                     value={formData[currentQuestion.id as keyof FormData]}
                     onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                    rows={4}
-                    className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-lg font-light placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] resize-none"
+                    rows={3}
+                    className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] resize-none"
                     autoComplete="off"
                   />
                 )}
 
                 {currentQuestion.type === 'slider' && (
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-5xl font-black text-[#eaa509]">
+                  <div className="space-y-8">
+                    <div className="text-center">
+                      <span className="text-7xl sm:text-8xl md:text-9xl font-black text-[#eaa509]">
                         ${formData.budget.toLocaleString()}
                       </span>
                     </div>
@@ -293,9 +293,9 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                       step="500"
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: parseInt(e.target.value) })}
-                      className="w-full h-3 bg-white/10 rounded-full appearance-none cursor-pointer slider"
+                      className="w-full h-4 bg-white/10 rounded-full appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-sm text-gray-500">
+                    <div className="flex justify-between text-base text-gray-500 font-medium">
                       <span>$0</span>
                       <span>$5,000</span>
                     </div>
@@ -303,14 +303,14 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                 )}
               </div>
 
-              {/* Navigation */}
-              <div className="flex gap-4">
+              {/* Navigation - Fixed at bottom */}
+              <div className="absolute bottom-8 left-8 right-8 flex gap-4">
                 {currentStep > 0 && (
                   <button
                     onClick={handleBack}
-                    className="flex items-center gap-2 px-6 py-4 border-2 border-white/20 text-white hover:border-[#eaa509] hover:text-[#eaa509] transition-all font-medium"
+                    className="flex items-center gap-2 px-8 py-5 border-2 border-white/20 text-white hover:border-[#eaa509] hover:text-[#eaa509] transition-all font-bold text-lg"
                   >
-                    <ArrowLeft className="w-5 h-5" />
+                    <ArrowLeft className="w-6 h-6" />
                     Back
                   </button>
                 )}
@@ -318,22 +318,22 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                 <button
                   onClick={handleNext}
                   disabled={!canProceed() || isSubmitting}
-                  className="flex-1 flex items-center justify-center gap-2 px-8 py-4 bg-[#eaa509] hover:bg-[#eaa509]/90 disabled:opacity-40 disabled:cursor-not-allowed text-black font-bold transition-all"
+                  className="flex-1 flex items-center justify-center gap-3 px-10 py-5 bg-[#eaa509] hover:bg-[#eaa509]/90 disabled:opacity-40 disabled:cursor-not-allowed text-black font-black text-lg transition-all"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-6 h-6 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
                       Submitting...
                     </>
                   ) : currentStep === questions.length - 1 ? (
                     <>
                       Submit
-                      <Send className="w-5 h-5" />
+                      <Send className="w-6 h-6" />
                     </>
                   ) : (
                     <>
                       Next
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-6 h-6" />
                     </>
                   )}
                 </button>
@@ -341,17 +341,17 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
             </>
           ) : (
             // Success state
-            <div className="text-center py-12">
-              <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[#eaa509]/20 mb-6">
-                <CheckCircle2 className="w-12 h-12 text-[#eaa509]" strokeWidth={2} />
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-[#eaa509]/20 mb-8">
+                <CheckCircle2 className="w-16 h-16 text-[#eaa509]" strokeWidth={3} />
               </div>
               
-              <h3 className="text-4xl sm:text-5xl font-black text-white mb-4">
+              <h3 className="text-5xl sm:text-6xl md:text-7xl font-black text-white mb-6 leading-none">
                 LET'S DO THIS!
               </h3>
               
-              <p className="text-xl text-gray-400 font-light">
-                Thanks, {formData.name}! We'll be in touch within 24 hours.
+              <p className="text-2xl sm:text-3xl text-gray-400 font-light">
+                Thanks, {formData.name}!<br />We'll be in touch within 24 hours.
               </p>
             </div>
           )}
@@ -361,28 +361,35 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
       <style>{`
         .slider::-webkit-slider-thumb {
           appearance: none;
-          width: 24px;
-          height: 24px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: #eaa509;
           cursor: pointer;
-          box-shadow: 0 0 20px rgba(234, 168, 32, 0.5);
+          box-shadow: 0 0 30px rgba(234, 168, 32, 0.8);
+          border: 4px solid #000;
         }
 
         .slider::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: #eaa509;
           cursor: pointer;
-          border: none;
-          box-shadow: 0 0 20px rgba(234, 168, 32, 0.5);
+          border: 4px solid #000;
+          box-shadow: 0 0 30px rgba(234, 168, 32, 0.8);
         }
 
         .slider::-webkit-slider-runnable-track {
-          background: linear-gradient(to right, #eaa509 0%, #eaa509 var(--progress), rgba(255,255,255,0.1) var(--progress), rgba(255,255,255,0.1) 100%);
-          height: 12px;
-          border-radius: 6px;
+          height: 16px;
+          border-radius: 8px;
+          background: rgba(255,255,255,0.1);
+        }
+
+        .slider::-moz-range-track {
+          height: 16px;
+          border-radius: 8px;
+          background: rgba(255,255,255,0.1);
         }
       `}</style>
     </div>
