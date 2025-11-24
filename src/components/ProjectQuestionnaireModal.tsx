@@ -84,8 +84,19 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
 
   const currentQuestion = questions[currentStep];
 
+  const isValidContact = (contact: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /[\d]{10,}/; // At least 10 digits
+    return emailRegex.test(contact) || phoneRegex.test(contact.replace(/\D/g, ''));
+  };
+
   const canProceed = (): boolean => {
     const value = formData[currentQuestion.id as keyof FormData];
+    
+    // Contact info needs email or phone validation
+    if (currentQuestion.id === 'contactInfo') {
+      return String(value).trim() !== '' && isValidContact(String(value));
+    }
     
     if (currentQuestion.type === 'select') {
       return value !== '' && value !== industries[0];
@@ -224,14 +235,23 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
 
                 {/* Input field */}
                 {currentQuestion.type === 'text' && (
-                  <input
-                    type="text"
-                    placeholder={currentQuestion.placeholder}
-                    value={formData[currentQuestion.id as keyof FormData]}
-                    onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                    className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-xl font-light placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509]"
-                    autoComplete="off"
-                  />
+                  <div>
+                    <input
+                      type="text"
+                      placeholder={currentQuestion.placeholder}
+                      value={formData[currentQuestion.id as keyof FormData]}
+                      onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-xl font-light placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509]"
+                      autoComplete="off"
+                    />
+                    {currentQuestion.id === 'contactInfo' && (
+                      <p className="text-sm text-gray-500 mt-2">
+                        {formData.contactInfo && !isValidContact(formData.contactInfo) 
+                          ? '⚠️ Please enter a valid email or phone number'
+                          : 'Enter your email or phone number'}
+                      </p>
+                    )}
+                  </div>
                 )}
 
                 {currentQuestion.type === 'select' && (
