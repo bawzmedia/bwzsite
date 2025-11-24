@@ -8,7 +8,6 @@ import ProjectsGrid from './components/ProjectsGrid';
 import TextPoster from './components/TextPoster';
 import BrandShowcase from './components/BrandShowcase';
 import About from './components/About';
-import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import FilmTimeline from './components/FilmTimeline';
@@ -85,7 +84,6 @@ function App() {
       <ProjectsGrid />
       <VideoPoster />
       <About />
-      <Contact />
       <Footer />
     </div>
   );

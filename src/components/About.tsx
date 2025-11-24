@@ -152,19 +152,20 @@ export default function About() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="pt-1.5 sm:pt-2">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="group relative px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 overflow-hidden bg-[#eaa509] hover:bg-[#1b032a] hover:shadow-2xl hover:shadow-[#eaa509]/50 transition-all hover:scale-105"
-              >
-                <span className="relative z-10 flex items-center gap-2 sm:gap-3 text-white font-black text-xs sm:text-sm md:text-base">
-                  LET'S CREATE TOGETHER
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-180 transition-transform duration-500" />
-                </span>
-              </button>
-            </div>
           </div>
+        </div>
+        
+        {/* CTA - Full width below */}
+        <div className="text-center mt-6 sm:mt-8">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="group relative px-8 sm:px-10 md:px-12 py-4 sm:py-5 overflow-hidden bg-[#eaa509] hover:bg-[#f4c430] transition-all hover:scale-105 shadow-2xl shadow-[#eaa509]/30"
+          >
+            <span className="relative z-10 flex items-center gap-3 text-black font-black text-base sm:text-lg md:text-xl tracking-wider">
+              LET'S START YOUR PROJECT
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-180 transition-transform duration-500" />
+            </span>
+          </button>
         </div>
       </div>
 

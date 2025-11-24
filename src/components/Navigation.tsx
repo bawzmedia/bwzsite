@@ -32,7 +32,6 @@ export default function Navigation() {
     { label: 'SERVICES', href: '#services', number: '02' },
     { label: 'PROJECTS', href: '#portfolio', number: '03' },
     { label: 'ABOUT', href: '#about', number: '04' },
-    { label: 'CONTACT', href: '#contact', number: '05' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
