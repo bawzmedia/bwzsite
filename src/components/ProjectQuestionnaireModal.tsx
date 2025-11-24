@@ -28,6 +28,20 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [contactError, setContactError] = useState('');
+
+  const validateContact = (contact: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+    
+    if (emailRegex.test(contact) || phoneRegex.test(contact)) {
+      setContactError('');
+      return true;
+    }
+    
+    setContactError('Please enter a valid email or phone number');
+    return false;
+  };
 
   const industries = [
     'Select an industry',
@@ -87,6 +101,9 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
   const canProceed = (): boolean => {
     const value = formData[currentQuestion.id as keyof FormData];
     
+    if (currentQuestion.id === 'contactInfo') {
+      return String(value).trim() !== '' && validateContact(String(value));
+    }
     if (currentQuestion.type === 'select') {
       return value !== '' && value !== industries[0];
     }
@@ -113,41 +130,50 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
   };
 
   const handleSubmit = async () => {
+    console.log('Submitting form...', formData);
     setIsSubmitting(true);
 
-    const { error } = await supabase.from('project_leads').insert([
-      {
-        name: formData.name,
-        business_name: formData.businessName,
-        contact_info: formData.contactInfo,
-        industry: formData.industry,
-        marketing_problem: formData.marketingProblem,
-        budget: formData.budget
-      },
-    ]);
+    try {
+      const { data, error } = await supabase.from('project_leads').insert([
+        {
+          name: formData.name,
+          business_name: formData.businessName,
+          contact_info: formData.contactInfo,
+          industry: formData.industry,
+          marketing_problem: formData.marketingProblem,
+          budget: formData.budget
+        },
+      ]);
 
-    if (error) {
-      console.error('Error submitting form:', error);
+      if (error) {
+        console.error('Supabase error:', error);
+        alert('Submission failed. Please try again or contact us directly.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      console.log('Submission successful!', data);
+      setSubmitted(true);
       setIsSubmitting(false);
-      return;
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setCurrentStep(0);
+        setFormData({
+          name: '',
+          businessName: '',
+          contactInfo: '',
+          industry: '',
+          marketingProblem: '',
+          budget: 2500
+        });
+        onClose();
+      }, 3000);
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      alert('Something went wrong. Please try again.');
+      setIsSubmitting(false);
     }
-
-    setSubmitted(true);
-    setIsSubmitting(false);
-
-    setTimeout(() => {
-      setSubmitted(false);
-      setCurrentStep(0);
-      setFormData({
-        name: '',
-        businessName: '',
-        contactInfo: '',
-        industry: '',
-        marketingProblem: '',
-        budget: 2500
-      });
-      onClose();
-    }, 3000);
   };
 
   const handleClose = () => {
@@ -215,14 +241,29 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
 
                 {/* Input field */}
                 {currentQuestion.type === 'text' && (
-                  <input
-                    type="text"
-                    placeholder={currentQuestion.placeholder}
-                    value={formData[currentQuestion.id as keyof FormData]}
-                    onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                    className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-xl font-light placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509]"
-                    autoComplete="off"
-                  />
+                  <div className="space-y-2">
+                    <input
+                      type="text"
+                      placeholder={currentQuestion.placeholder}
+                      value={formData[currentQuestion.id as keyof FormData]}
+                      onChange={(e) => {
+                        setFormData({ ...formData, [currentQuestion.id]: e.target.value });
+                        if (currentQuestion.id === 'contactInfo' && contactError) {
+                          validateContact(e.target.value);
+                        }
+                      }}
+                      onBlur={(e) => {
+                        if (currentQuestion.id === 'contactInfo') {
+                          validateContact(e.target.value);
+                        }
+                      }}
+                      className="w-full bg-white/5 border-b-2 border-white/20 px-0 py-4 text-white text-xl font-light placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509]"
+                      autoComplete="off"
+                    />
+                    {currentQuestion.id === 'contactInfo' && contactError && (
+                      <p className="text-red-400 text-sm">{contactError}</p>
+                    )}
+                  </div>
                 )}
 
                 {currentQuestion.type === 'select' && (
