@@ -1,7 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { smoothScrollTo } from '../utils/smoothScroll';
-import LeadCaptureModal from './LeadCaptureModal';
+import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -189,7 +189,7 @@ export default function Navigation() {
         }
       `}</style>
 
-      <LeadCaptureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ProjectQuestionnaireModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

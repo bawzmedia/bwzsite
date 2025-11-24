@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import LeadCaptureModal from './LeadCaptureModal';
+import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 
 export default function SplitHero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function SplitHero() {
         </div>
       </div>
 
-      <LeadCaptureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ProjectQuestionnaireModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

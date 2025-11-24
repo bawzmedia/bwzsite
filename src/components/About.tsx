@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, Zap, Target, Award } from 'lucide-react';
-import LeadCaptureModal from './LeadCaptureModal';
+import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 
 export default function About() {
   const [isHovered, setIsHovered] = useState(false);
@@ -173,7 +173,7 @@ export default function About() {
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
 
-      <LeadCaptureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ProjectQuestionnaireModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }
