@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { Gift, Shield, Sparkles } from 'lucide-react';
+import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 
 export default function Guarantee() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
+    <>
     <section className="relative py-20 sm:py-24 md:py-32 bg-black overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1b032a]/20 to-black"></div>
@@ -112,15 +117,15 @@ export default function Guarantee() {
             <span className="text-[#eaa509]">You shouldn't be.</span>
           </p>
           
-          <a 
-            href="#contact"
+          <button 
+            onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-3 px-10 py-6 bg-gradient-to-r from-[#eaa509] to-[#f4c430] hover:from-[#f4c430] hover:to-[#eaa509] transition-all duration-300 group shadow-2xl shadow-[#eaa509]/30"
           >
             <span className="text-black font-black text-lg tracking-wider">
               LET'S START YOUR PROJECT
             </span>
             <Sparkles className="w-6 h-6 text-black group-hover:rotate-180 transition-transform duration-500" />
-          </a>
+          </button>
         </div>
       </div>
 
@@ -138,6 +143,9 @@ export default function Guarantee() {
         }
       `}</style>
     </section>
+
+    <ProjectQuestionnaireModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 }
 
