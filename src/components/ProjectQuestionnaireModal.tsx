@@ -318,7 +318,7 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                       step="500"
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: parseInt(e.target.value) })}
-                      className="w-full h-4 bg-white/10 rounded-full appearance-none cursor-pointer slider"
+                      className="w-full appearance-none cursor-pointer slider"
                     />
                     <div className="flex justify-between text-base text-gray-500 font-medium">
                       <span>$0</span>
@@ -384,10 +384,21 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
       </div>
 
       <style>{`
-        .slider::-webkit-slider-thumb {
+        .slider {
+          -webkit-appearance: none;
           appearance: none;
-          width: 32px;
-          height: 32px;
+          width: 100%;
+          height: 8px;
+          background: rgba(255,255,255,0.1);
+          border-radius: 4px;
+          outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 28px;
+          height: 28px;
           border-radius: 50%;
           background: #eaa509;
           cursor: pointer;
@@ -396,25 +407,13 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
         }
 
         .slider::-moz-range-thumb {
-          width: 32px;
-          height: 32px;
+          width: 28px;
+          height: 28px;
           border-radius: 50%;
           background: #eaa509;
           cursor: pointer;
           border: 4px solid #000;
           box-shadow: 0 0 30px rgba(234, 168, 32, 0.8);
-        }
-
-        .slider::-webkit-slider-runnable-track {
-          height: 16px;
-          border-radius: 8px;
-          background: rgba(255,255,255,0.1);
-        }
-
-        .slider::-moz-range-track {
-          height: 16px;
-          border-radius: 8px;
-          background: rgba(255,255,255,0.1);
         }
       `}</style>
     </div>
