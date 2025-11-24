@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import HeroCarousel from './components/HeroCarousel';
+import Guarantee from './components/Guarantee';
 import SplitHero from './components/SplitHero';
 import Services from './components/Services';
 import VideoPoster from './components/VideoPoster';
@@ -76,6 +77,7 @@ function App() {
       <FilmTimeline />
       <Navigation />
       <HeroCarousel />
+      <Guarantee />
       <TextPoster />
       <BrandShowcase />
       <SplitHero />
