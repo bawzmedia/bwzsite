@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Sparkles, Zap, Target, Award } from 'lucide-react';
-import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 
 export default function About() {
   const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section id="about" className="relative min-h-screen bg-black overflow-hidden flex items-center py-12 sm:py-16 md:py-20 isolate">
@@ -154,27 +152,12 @@ export default function About() {
 
           </div>
         </div>
-        
-        {/* CTA - Full width below */}
-        <div className="text-center mt-6 sm:mt-8">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="group relative px-8 sm:px-10 md:px-12 py-4 sm:py-5 overflow-hidden bg-[#eaa509] hover:bg-[#f4c430] transition-all hover:scale-105 shadow-2xl shadow-[#eaa509]/30"
-          >
-            <span className="relative z-10 flex items-center gap-3 text-black font-black text-base sm:text-lg md:text-xl tracking-wider">
-              LET'S START YOUR PROJECT
-              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-180 transition-transform duration-500" />
-            </span>
-          </button>
-        </div>
       </div>
 
       {/* Scanline effect */}
       <div className="absolute inset-0 pointer-events-none opacity-5">
         <div className="absolute inset-0 bg-white/20 h-[2px] animate-float"></div>
       </div>
-
-      <ProjectQuestionnaireModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }
