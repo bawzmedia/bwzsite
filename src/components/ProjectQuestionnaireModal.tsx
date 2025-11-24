@@ -124,7 +124,7 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && currentQuestion.type !== 'textarea') {
+    if (e.key === 'Enter') {
       e.preventDefault();
       if (canProceed()) {
         handleNext();
@@ -200,22 +200,22 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95">
       {/* Close backdrop */}
       <div className="absolute inset-0" onClick={handleClose}></div>
 
-      <div className="relative w-full h-screen max-w-5xl flex flex-col">
+      <div className="relative w-full max-w-4xl md:h-[80vh] bg-gradient-to-b from-[#1b032a] to-black border-2 border-[#E9A820] rounded-xl md:rounded-none md:border-0 md:bg-transparent flex flex-col">
         {/* Close button */}
         <button
           onClick={handleClose}
           disabled={isSubmitting}
-          className="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-[#E9A820] hover:bg-[#E9A820]/80 transition-colors disabled:opacity-50"
+          className="absolute top-4 right-4 md:top-8 md:right-8 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-[#E9A820] hover:bg-[#E9A820]/80 transition-colors disabled:opacity-50"
           aria-label="Close"
         >
           <X className="w-6 h-6 text-black" strokeWidth={3} />
         </button>
 
-        <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 max-w-3xl w-full mx-auto">
+        <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-8 md:px-12 max-w-3xl w-full mx-auto">
           {!submitted ? (
             <>
               {/* Progress bar - compact */}
@@ -237,12 +237,12 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
               </div>
 
               {/* Question - Large and centered */}
-              <div className="w-full mb-8">
-                <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 text-center leading-none">
+              <div className="w-full mb-6">
+                <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 text-center leading-tight">
                   {currentQuestion.question}
                 </h3>
                 {currentQuestion.type !== 'slider' && (
-                  <p className="text-center text-sm text-gray-600 mb-4">
+                  <p className="text-center text-xs text-gray-600 mb-4 hidden md:block">
                     Press <kbd className="px-2 py-1 bg-white/10 rounded text-white text-xs">Enter</kbd> to continue
                   </p>
                 )}
@@ -256,7 +256,7 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
                       onKeyPress={handleKeyPress}
-                      className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-3xl sm:text-4xl md:text-5xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
+                      className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-4 text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                       autoComplete="off"
                     />
                     {currentQuestion.id === 'contactInfo' && (
@@ -282,10 +282,10 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                       }, 300);
                     }}
                     onKeyPress={handleKeyPress}
-                    className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-2xl sm:text-3xl md:text-4xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
+                    className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-4 text-white text-lg sm:text-xl md:text-3xl lg:text-4xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
                   >
                     {currentQuestion.options?.map((option) => (
-                      <option key={option} value={option} className="bg-black text-lg">
+                      <option key={option} value={option} className="bg-black text-base">
                         {option}
                       </option>
                     ))}
@@ -297,16 +297,17 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                     placeholder={currentQuestion.placeholder}
                     value={formData[currentQuestion.id as keyof FormData]}
                     onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
-                    rows={3}
-                    className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-xl sm:text-2xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] resize-none"
+                    onKeyPress={handleKeyPress}
+                    rows={2}
+                    className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-4 text-white text-base sm:text-lg md:text-xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509] resize-none"
                     autoComplete="off"
                   />
                 )}
 
                 {currentQuestion.type === 'slider' && (
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                     <div className="text-center">
-                      <span className="text-7xl sm:text-8xl md:text-9xl font-black text-[#eaa509]">
+                      <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#eaa509]">
                         ${formData.budget.toLocaleString()}
                       </span>
                     </div>
@@ -327,37 +328,37 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                 )}
               </div>
 
-              {/* Navigation - Fixed at bottom */}
-              <div className="absolute bottom-8 left-8 right-8 flex gap-4">
+              {/* Navigation */}
+              <div className="w-full mt-8 flex gap-3">
                 {currentStep > 0 && (
                   <button
                     onClick={handleBack}
-                    className="flex items-center gap-2 px-8 py-5 border-2 border-white/20 text-white hover:border-[#eaa509] hover:text-[#eaa509] transition-all font-bold text-lg"
+                    className="flex items-center gap-2 px-5 py-4 border-2 border-white/20 text-white hover:border-[#eaa509] hover:text-[#eaa509] transition-all font-bold text-sm sm:text-base"
                   >
-                    <ArrowLeft className="w-6 h-6" />
-                    Back
+                    <ArrowLeft className="w-5 h-5" />
+                    <span className="hidden sm:inline">Back</span>
                   </button>
                 )}
                 
                 <button
                   onClick={handleNext}
                   disabled={!canProceed() || isSubmitting}
-                  className="flex-1 flex items-center justify-center gap-3 px-10 py-5 bg-[#eaa509] hover:bg-[#eaa509]/90 disabled:opacity-40 disabled:cursor-not-allowed text-black font-black text-lg transition-all"
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-[#eaa509] hover:bg-[#eaa509]/90 disabled:opacity-40 disabled:cursor-not-allowed text-black font-black text-sm sm:text-base md:text-lg transition-all"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-6 h-6 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
                       Submitting...
                     </>
                   ) : currentStep === questions.length - 1 ? (
                     <>
                       Submit
-                      <Send className="w-6 h-6" />
+                      <Send className="w-5 h-5" />
                     </>
                   ) : (
                     <>
                       Next
-                      <ArrowRight className="w-6 h-6" />
+                      <ArrowRight className="w-5 h-5" />
                     </>
                   )}
                 </button>
