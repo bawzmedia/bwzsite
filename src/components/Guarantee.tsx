@@ -41,7 +41,7 @@ export default function Guarantee() {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[#eaa509] to-[#f4c430] rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
             
             {/* Card */}
-            <div className="relative bg-gradient-to-br from-[#1b032a] to-black border-2 border-[#eaa509] rounded-xl p-4 sm:p-5 md:p-6 h-full">
+            <div className="relative bg-gradient-to-br from-[#1b032a] to-black border-2 border-[#eaa509] rounded-xl p-4 sm:p-5 md:p-6 h-full text-center">
               {/* Icon badge */}
               <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#eaa509] mb-2 shadow-xl shadow-[#eaa509]/50">
                 <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-black" strokeWidth={2.5} />
@@ -77,7 +77,7 @@ export default function Guarantee() {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-[#1b032a] to-[#3d1f5c] rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
             
             {/* Card */}
-            <div className="relative bg-gradient-to-br from-black to-[#0a0a0a] border-2 border-[#1b032a] rounded-xl p-4 sm:p-5 md:p-6 h-full">
+            <div className="relative bg-gradient-to-br from-black to-[#0a0a0a] border-2 border-[#1b032a] rounded-xl p-4 sm:p-5 md:p-6 h-full text-center">
               {/* Icon badge */}
               <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1b032a] mb-2 shadow-xl shadow-[#1b032a]/50">
                 <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-[#eaa509]" strokeWidth={2.5} />
