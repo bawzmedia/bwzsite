@@ -123,6 +123,15 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && currentQuestion.type !== 'textarea') {
+      e.preventDefault();
+      if (canProceed()) {
+        handleNext();
+      }
+    }
+  };
+
   const handleSubmit = async () => {
     console.log('Submitting form...', formData);
     setIsSubmitting(true);
@@ -232,6 +241,11 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                 <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 text-center leading-none">
                   {currentQuestion.question}
                 </h3>
+                {currentQuestion.type !== 'slider' && (
+                  <p className="text-center text-sm text-gray-600 mb-4">
+                    Press <kbd className="px-2 py-1 bg-white/10 rounded text-white text-xs">Enter</kbd> to continue
+                  </p>
+                )}
 
                 {/* Input field - Large and centered */}
                 {currentQuestion.type === 'text' && (
@@ -241,6 +255,7 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                       placeholder={currentQuestion.placeholder}
                       value={formData[currentQuestion.id as keyof FormData]}
                       onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
+                      onKeyPress={handleKeyPress}
                       className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-3xl sm:text-4xl md:text-5xl font-light placeholder:text-gray-700 focus:outline-none focus:border-[#eaa509]"
                       autoComplete="off"
                     />
@@ -257,7 +272,16 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose }: ProjectQu
                 {currentQuestion.type === 'select' && (
                   <select
                     value={formData[currentQuestion.id as keyof FormData]}
-                    onChange={(e) => setFormData({ ...formData, [currentQuestion.id]: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, [currentQuestion.id]: e.target.value });
+                      // Auto-advance on select
+                      setTimeout(() => {
+                        if (canProceed()) {
+                          handleNext();
+                        }
+                      }, 300);
+                    }}
+                    onKeyPress={handleKeyPress}
                     className="w-full text-center bg-transparent border-b-4 border-[#eaa509]/30 px-0 py-6 text-white text-2xl sm:text-3xl md:text-4xl font-light focus:outline-none focus:border-[#eaa509] cursor-pointer"
                   >
                     {currentQuestion.options?.map((option) => (
