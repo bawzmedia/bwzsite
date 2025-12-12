@@ -10,7 +10,7 @@ export default function SplitHero() {
       <section className="relative min-h-[100svh] overflow-hidden bg-black">
         <div className="grid lg:grid-cols-2 min-h-[100svh]">
           {/* Left side - Content */}
-          <div className="relative flex items-center justify-center p-6 sm:p-10 md:p-14 bg-[#1a0832] order-2 lg:order-1">
+          <div className="relative flex items-center justify-center p-6 sm:p-10 md:p-14 bg-[#2d1654] order-2 lg:order-1">
             {/* Background pattern */}
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(233,168,32,0.1)_0%,transparent_70%)]"></div>

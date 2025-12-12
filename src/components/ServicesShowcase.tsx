@@ -39,7 +39,7 @@ export default function ServicesShowcase() {
         { icon: Sparkles, text: 'Custom integrations' },
       ],
       image: '/n8nworkflow.png',
-      color: '#1a0832',
+      color: '#2d1654',
     },
     {
       id: 'production',

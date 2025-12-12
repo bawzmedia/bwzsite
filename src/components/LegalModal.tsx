@@ -99,8 +99,8 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
         onClick={onClose}
       ></div>
 
-      <div className="relative w-full max-w-3xl bg-gradient-to-b from-[#1a0832] to-black border-2 border-[#E9A820]/30 rounded-lg shadow-2xl overflow-hidden animate-slide-up max-h-[80vh] flex flex-col">
-        <div className="sticky top-0 bg-gradient-to-b from-[#1a0832] to-[#1a0832]/95 border-b border-[#E9A820]/20 p-6 flex items-center justify-between z-10">
+      <div className="relative w-full max-w-3xl bg-gradient-to-b from-[#2d1654] to-black border-2 border-[#E9A820]/30 rounded-lg shadow-2xl overflow-hidden animate-slide-up max-h-[80vh] flex flex-col">
+        <div className="sticky top-0 bg-gradient-to-b from-[#2d1654] to-[#2d1654]/95 border-b border-[#E9A820]/20 p-6 flex items-center justify-between z-10">
           <h2 className="text-2xl sm:text-3xl font-black text-white">{content.title}</h2>
           <button
             onClick={onClose}

@@ -61,7 +61,7 @@ export default function PricingTiers() {
 
   return (
     <>
-      <section id="pricing" className="relative py-16 sm:py-20 md:py-24 bg-gradient-to-b from-[#1a0832] to-black overflow-hidden">
+      <section id="pricing" className="relative py-16 sm:py-20 md:py-24 bg-gradient-to-b from-[#2d1654] to-black overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(233,168,32,0.15)_0%,transparent_50%)]"></div>
