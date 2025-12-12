@@ -1,116 +1,98 @@
 import { useState } from 'react';
-import { Gift, Shield, ArrowRight, Sparkles } from 'lucide-react';
+import { Gift, Shield, ArrowRight } from 'lucide-react';
 import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 
 export default function Guarantee() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const guarantees = [
+    {
+      icon: Gift,
+      label: 'Signing Bonus',
+      title: 'FREE AI COMMERCIAL',
+      description: 'Sign with me and get a complimentary AI-infused hero commercial to elevate your brand from day one.',
+      value: 'VALUE: $3,000+',
+    },
+    {
+      icon: Shield,
+      label: 'Iron-Clad Guarantee',
+      title: 'FILMED COMMERCIAL',
+      description: "If our project doesn't deliver, I personally film you an in-person commercial. Content you own forever.",
+      value: '100% RISK-FREE',
+    },
+  ];
+
   return (
     <>
       <section className="relative min-h-[100svh] bg-black overflow-hidden flex items-center py-12 sm:py-0">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1b032a]/30 via-black to-[#E9A820]/10"></div>
+        {/* Background - simple and clean */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-        <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-[#E9A820] rounded-full blur-[200px] opacity-10"></div>
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#1b032a] rounded-full blur-[200px] opacity-30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9A820]/5 to-transparent"></div>
 
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          {/* Header */}
-          <div className="text-center mb-6 sm:mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E9A820]/10 border border-[#E9A820]/30 mb-4">
-              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#E9A820]" />
-              <span className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase">
-                Risk-Free Guarantee
-              </span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-2 sm:mb-4">
-              START WITH <span className="text-[#E9A820]">ZERO RISK</span>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          {/* Header - Clear hierarchy */}
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-4">
+              Our Commitment
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
+              WORK WITH <span className="text-[#E9A820]">CONFIDENCE</span>
             </h2>
-            <p className="text-sm sm:text-base text-white/60 max-w-xl mx-auto px-4">
-              I'm so confident in the value I deliver, I'm putting my money where my mouth is.
+            <p className="text-sm sm:text-base text-white/60 max-w-lg mx-auto">
+              Every partnership is backed by tangible value and an iron-clad guarantee.
             </p>
           </div>
 
-          {/* Guarantee Cards */}
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            
-            {/* Card 1: Signing Bonus */}
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#E9A820] to-[#f4c430] blur opacity-20"></div>
-              
-              <div className="relative bg-gradient-to-br from-[#E9A820]/20 via-[#1b032a]/50 to-black border-2 border-[#E9A820] p-4 sm:p-6 h-full">
-                <div className="flex items-center gap-3 mb-3 sm:mb-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#E9A820]">
-                    <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-black" strokeWidth={2.5} />
+          {/* Guarantee Cards - Consistent styling */}
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+            {guarantees.map((item, index) => (
+              <div key={index} className="relative group">
+                {/* Card */}
+                <div className="relative bg-white/[0.02] border border-[#E9A820]/30 p-6 sm:p-8 h-full hover:border-[#E9A820]/60 transition-colors duration-300">
+                  {/* Icon */}
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-[#E9A820] mb-6">
+                    <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-black" strokeWidth={2} />
                   </div>
-                  <div>
-                    <p className="text-[#E9A820] text-[10px] sm:text-xs font-bold tracking-wider uppercase">
-                      Signing Bonus
-                    </p>
-                    <h3 className="text-base sm:text-lg font-black text-white">
-                      FREE AI COMMERCIAL
-                    </h3>
-                  </div>
-                </div>
 
-                <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-3 sm:mb-4">
-                  Sign with me and get a complimentary AI-infused hero commercial to elevate your brand from day one.
-                </p>
-
-                <div className="pt-3 border-t border-[#E9A820]/30">
-                  <p className="text-xs sm:text-sm text-[#E9A820] font-black">
-                    VALUE: $3,000+ • YOURS: FREE
+                  {/* Label */}
+                  <p className="text-[#E9A820] text-xs font-bold tracking-wider uppercase mb-2">
+                    {item.label}
                   </p>
+
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-4">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed mb-6">
+                    {item.description}
+                  </p>
+
+                  {/* Value */}
+                  <div className="pt-4 border-t border-white/10">
+                    <p className="text-sm text-[#E9A820] font-bold tracking-wider">
+                      {item.value}
+                    </p>
+                  </div>
+
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#E9A820]/30"></div>
                 </div>
               </div>
-            </div>
-
-            {/* Card 2: Bust Guarantee */}
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#1b032a] to-[#3d1f5c] blur opacity-20"></div>
-              
-              <div className="relative bg-gradient-to-br from-[#1b032a]/50 via-black to-[#1b032a]/30 border-2 border-[#1b032a] p-4 sm:p-6 h-full">
-                <div className="flex items-center gap-3 mb-3 sm:mb-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#1b032a] border-2 border-[#E9A820]/50">
-                    <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-[#E9A820]" strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <p className="text-[#E9A820] text-[10px] sm:text-xs font-bold tracking-wider uppercase">
-                      Iron-Clad Guarantee
-                    </p>
-                    <h3 className="text-base sm:text-lg font-black text-white">
-                      FILMED COMMERCIAL
-                    </h3>
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-3 sm:mb-4">
-                  If our project doesn't deliver, I personally film you an in-person commercial. Content you own forever.
-                </p>
-
-                <div className="pt-3 border-t border-[#1b032a]">
-                  <p className="text-xs sm:text-sm text-[#E9A820] font-black">
-                    100% RISK-FREE • GUARANTEED
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Bottom CTA */}
+          {/* Single CTA - Clear action */}
           <div className="text-center">
-            <p className="text-base sm:text-lg md:text-xl font-black text-white mb-4 sm:mb-6">
-              Still on the fence? <span className="text-[#E9A820]">You shouldn't be.</span>
-            </p>
-            
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300 shadow-2xl shadow-[#E9A820]/30"
+              className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300"
             >
-              <span className="text-black font-black text-sm sm:text-base tracking-wide">
-                APPLY NOW
+              <span className="text-black font-bold text-sm sm:text-base tracking-wider">
+                START YOUR PROJECT
               </span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-black group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 text-black group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

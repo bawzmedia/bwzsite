@@ -23,7 +23,7 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-0 bg-gradient-to-br from-[#1b032a] via-[#2d0845] to-[#1b032a] overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-gradient-to-br from-[#1b032a] via-[#2d0845] to-[#1b032a] overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(233,168,32,0.1)_0%,transparent_50%)]"></div>
@@ -33,8 +33,8 @@ export default function ProblemSection() {
       
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-2">
+        <div className="text-center mb-10 sm:mb-12">
+          <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
             The Content Struggle is Real
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
@@ -42,43 +42,46 @@ export default function ProblemSection() {
           </h2>
         </div>
 
-        {/* Quadrant Grid - 2x2 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-5xl mx-auto">
+        {/* Grid - Image and Text Separated */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden border border-white/10"
+              className="group bg-white/[0.02] border border-white/10 hover:border-[#E9A820]/40 transition-colors duration-300"
             >
-              {/* Background Image */}
-              <div className="absolute inset-0">
+              {/* Image Section */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 <img 
                   src={problem.image} 
                   alt={problem.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1b032a] via-[#1b032a]/80 to-[#1b032a]/40"></div>
+                {/* Subtle gradient at bottom for transition */}
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#1b032a]/80 to-transparent"></div>
               </div>
 
-              {/* Content */}
-              <div className="relative p-5 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3">
+              {/* Text Section - Separate from image */}
+              <div className="p-5 sm:p-6">
+                {/* Title */}
+                <h3 className="text-lg sm:text-xl font-black text-white mb-3 group-hover:text-[#E9A820] transition-colors duration-300">
                   {problem.title}
                 </h3>
-                <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed">
+                
+                {/* Description */}
+                <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                   {problem.description}
                 </p>
               </div>
 
               {/* Corner Accent */}
-              <div className="absolute top-3 right-3 w-5 h-5 sm:w-6 sm:h-6 border-t-2 border-r-2 border-[#E9A820]/50"></div>
+              <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#E9A820]/30 group-hover:border-[#E9A820]/60 transition-colors duration-300"></div>
             </div>
           ))}
         </div>
 
         {/* Bottom text */}
-        <div className="text-center mt-8 sm:mt-10">
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white">
+        <div className="text-center mt-10 sm:mt-12">
+          <p className="text-base sm:text-lg md:text-xl font-bold text-white">
             There's a better way.{' '}
             <span className="text-[#E9A820]">We handle it all.</span>
           </p>

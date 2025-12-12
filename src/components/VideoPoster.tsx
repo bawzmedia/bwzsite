@@ -13,10 +13,10 @@ export default function VideoPoster() {
       {/* Faint grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
       
-      {/* Subtle radial glow */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(233,168,32,0.05)_0%,transparent_50%)]"></div>
-      </div>
+      {/* Golden glow from right side */}
+      <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-[#E9A820]/20 via-[#E9A820]/05 to-transparent"></div>
+      <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-[#E9A820] rounded-full blur-[200px] opacity-25"></div>
+      <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-[#E9A820] rounded-full blur-[150px] opacity-15"></div>
 
       <div className="relative w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[100svh]">
