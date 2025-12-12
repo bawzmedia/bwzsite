@@ -16,7 +16,12 @@ export default function VideoPoster() {
       {/* Golden glow from right side */}
       <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-[#E9A820]/20 via-[#E9A820]/05 to-transparent"></div>
       <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-[#E9A820] rounded-full blur-[200px] opacity-25"></div>
-      <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] bg-[#E9A820] rounded-full blur-[150px] opacity-15"></div>
+      <div className="absolute bottom-1/3 right-0 w-[300px] h-[300px] bg-[#E9A820] rounded-full blur-[150px] opacity-15"></div>
+
+      {/* Purple glow from bottom - smooth transition to next section */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1b032a]/40 via-[#1b032a]/15 to-transparent"></div>
+      <div className="absolute -bottom-20 left-1/4 w-[500px] h-[400px] bg-[#1b032a] rounded-full blur-[200px] opacity-50"></div>
+      <div className="absolute -bottom-10 right-1/3 w-[400px] h-[300px] bg-[#2d0845] rounded-full blur-[180px] opacity-40"></div>
 
       <div className="relative w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[100svh]">
