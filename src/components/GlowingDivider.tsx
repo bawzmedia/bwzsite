@@ -12,10 +12,8 @@ export default function GlowingDivider() {
       const rect = dividerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      // Trigger when the divider enters the bottom 60% of the viewport
-      const triggerPoint = windowHeight * 0.6;
-      
-      if (rect.top < triggerPoint) {
+      // Trigger as soon as the divider enters the viewport from the bottom
+      if (rect.top < windowHeight) {
         setHasTriggered(true);
         setIsAnimating(true);
       }
