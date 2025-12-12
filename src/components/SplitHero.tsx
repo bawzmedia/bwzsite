@@ -48,12 +48,12 @@ export default function SplitHero() {
             </div>
           </div>
 
-          {/* Right side - Image - NO overlay to show full colors */}
-          <div className="relative min-h-[40vh] lg:min-h-full order-1 lg:order-2">
+          {/* Right side - Image - Full height, NO overlay to show full colors */}
+          <div className="relative min-h-[50svh] lg:min-h-[100svh] order-1 lg:order-2">
             <img
               src="/A7404497.jpg"
               alt="Creative Work"
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
 
             {/* Floating badge */}

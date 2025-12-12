@@ -29,11 +29,8 @@ export default function Guarantee() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9A820]/5 to-transparent"></div>
 
-        {/* Purple glow from bottom - matching SplitHero purple, gradient up */}
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#1b032a] via-[#1b032a]/60 to-transparent"></div>
-        <div className="absolute -bottom-32 left-1/4 w-[700px] h-[500px] bg-[#1b032a] rounded-full blur-[150px] opacity-80"></div>
-        <div className="absolute -bottom-20 right-1/4 w-[600px] h-[400px] bg-[#2d0845] rounded-full blur-[150px] opacity-70"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-[#1b032a]"></div>
+        {/* Purple gradient from bottom - smooth transition to SplitHero */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1b032a] via-[#1b032a]/40 to-transparent"></div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Header - Clear hierarchy */}
