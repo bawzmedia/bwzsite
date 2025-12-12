@@ -23,13 +23,13 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-black overflow-hidden">
-      {/* Background - Black with faint grid lines */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-      
-      {/* Subtle gold glow accents */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#E9A820] rounded-full blur-[200px] opacity-5"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#E9A820] rounded-full blur-[200px] opacity-5"></div>
+    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-gradient-to-br from-[#1b032a] via-[#2d0845] to-[#1b032a] overflow-hidden">
+      {/* Background effects - Purple with grid */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(233,168,32,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(233,168,32,0.08)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+      </div>
       
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
@@ -47,7 +47,7 @@ export default function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="group bg-white/[0.02] border border-white/10 hover:border-[#E9A820]/40 transition-colors duration-300"
+              className="group relative overflow-hidden border border-white/10 hover:border-[#E9A820]/40 transition-colors duration-300"
             >
               {/* Image Section */}
               <div className="relative h-40 sm:h-48 overflow-hidden">
@@ -56,21 +56,27 @@ export default function ProblemSection() {
                   alt={problem.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Subtle gradient at bottom for transition */}
-                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/80 to-transparent"></div>
+                {/* Subtle gradient at bottom for transition to black tile */}
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black to-transparent"></div>
               </div>
 
-              {/* Text Section - Separate from image */}
-              <div className="p-5 sm:p-6">
-                {/* Title */}
-                <h3 className="text-lg sm:text-xl font-black text-white mb-3 group-hover:text-[#E9A820] transition-colors duration-300">
-                  {problem.title}
-                </h3>
+              {/* Text Section - Black background with faint grid lines */}
+              <div className="relative bg-black p-5 sm:p-6">
+                {/* Faint grid pattern inside the tile */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                 
-                {/* Description */}
-                <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                  {problem.description}
-                </p>
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Title */}
+                  <h3 className="text-lg sm:text-xl font-black text-white mb-3 group-hover:text-[#E9A820] transition-colors duration-300">
+                    {problem.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+                    {problem.description}
+                  </p>
+                </div>
               </div>
 
               {/* Corner Accent */}
