@@ -4,6 +4,7 @@ import BrandShowcase from './components/BrandShowcase';
 import ProblemSection from './components/ProblemSection';
 import TextPoster from './components/TextPoster';
 import ServicesShowcase from './components/ServicesShowcase';
+import GlowingDivider from './components/GlowingDivider';
 import Guarantee from './components/Guarantee';
 import SplitHero from './components/SplitHero';
 import ProjectsGrid from './components/ProjectsGrid';
@@ -86,6 +87,9 @@ function App() {
       
       {/* 5. Services - Marketing services showcase */}
       <ServicesShowcase />
+      
+      {/* Glowing divider between services and guarantee */}
+      <GlowingDivider />
       
       {/* 6. Guarantee - Risk reversal */}
       <Guarantee />
