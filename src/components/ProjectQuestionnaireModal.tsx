@@ -226,7 +226,7 @@ export default function ProjectQuestionnaireModal({ isOpen, onClose, selectedTie
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95">
       <div className="absolute inset-0" onClick={handleClose}></div>
 
-      <div className="relative w-full max-w-4xl md:h-[80vh] bg-gradient-to-b from-[#1b032a] to-black border-2 border-[#E9A820] flex flex-col">
+      <div className="relative w-full max-w-4xl md:h-[80vh] bg-gradient-to-b from-[#2a0e4a] to-black border-2 border-[#E9A820] flex flex-col">
         {/* Close button */}
         <button
           onClick={handleClose}

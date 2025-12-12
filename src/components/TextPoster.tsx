@@ -45,7 +45,7 @@ export default function TextPoster() {
             key={index}
             className="transition-all duration-700 ease-in-out"
             style={{
-              backgroundColor: activeSquares.has(index) ? '#1b032a' : 'transparent',
+              backgroundColor: activeSquares.has(index) ? '#2a0e4a' : 'transparent',
               opacity: activeSquares.has(index) ? 0.3 : 0,
             }}
           />
@@ -79,7 +79,7 @@ export default function TextPoster() {
       </div>
 
       {/* Bottom stripe */}
-      <div className="absolute bottom-0 left-0 right-0 h-1.5 sm:h-2 bg-[#1b032a]"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 sm:h-2 bg-[#2a0e4a]"></div>
     </section>
   );
 }

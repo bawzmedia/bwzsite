@@ -16,7 +16,7 @@ export default function Services() {
       icon: Camera,
       title: 'Professional Photography',
       description: 'High-resolution photos for brand assets, social media, and marketing materials.',
-      color: '#1b032a',
+      color: '#2a0e4a',
     },
     {
       icon: Megaphone,
@@ -28,7 +28,7 @@ export default function Services() {
       icon: Palette,
       title: 'Creative Strategy',
       description: 'Content calendars, story arcs, and campaign themes that connect with your audience.',
-      color: '#1b032a',
+      color: '#2a0e4a',
     },
   ];
 
@@ -51,7 +51,7 @@ export default function Services() {
         {/* Background effects */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(233,168,32,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(233,168,32,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#E9A820] rounded-full blur-[200px] opacity-[0.07]"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#1b032a] rounded-full blur-[200px] opacity-20"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2a0e4a] rounded-full blur-[200px] opacity-20"></div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -85,7 +85,7 @@ export default function Services() {
                 >
                   <service.icon 
                     className="w-6 h-6 sm:w-7 sm:h-7" 
-                    style={{ color: service.color === '#1b032a' ? '#E9A820' : service.color }}
+                    style={{ color: service.color === '#2a0e4a' ? '#E9A820' : service.color }}
                   />
                 </div>
 
@@ -105,9 +105,9 @@ export default function Services() {
           {/* AI Add-On Section */}
           <div className="relative">
             {/* Glow effect */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-[#1b032a] via-[#3d1f5c] to-[#1b032a] blur-xl opacity-40"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-[#2a0e4a] via-[#3d1f5c] to-[#2a0e4a] blur-xl opacity-40"></div>
             
-            <div className="relative bg-gradient-to-br from-[#1b032a] via-[#1b032a]/80 to-[#0a0510] border-2 border-[#1b032a] p-6 sm:p-8 md:p-10">
+            <div className="relative bg-gradient-to-br from-[#2a0e4a] via-[#2a0e4a]/80 to-[#0a0510] border-2 border-[#2a0e4a] p-6 sm:p-8 md:p-10">
               {/* Corner accents */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#E9A820]"></div>
               <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#E9A820]"></div>

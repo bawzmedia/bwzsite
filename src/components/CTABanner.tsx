@@ -22,7 +22,7 @@ export default function CTABanner() {
           
           <button
             onClick={() => setIsModalOpen(true)}
-            className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-black hover:bg-[#1b032a] transition-all duration-300 shadow-2xl"
+            className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-black hover:bg-[#2a0e4a] transition-all duration-300 shadow-2xl"
           >
             <span className="text-white font-black text-sm sm:text-base tracking-wide">
               START YOUR PROJECT

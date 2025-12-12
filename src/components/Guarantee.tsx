@@ -30,7 +30,7 @@ export default function Guarantee() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9A820]/5 to-transparent"></div>
 
         {/* Purple gradient from bottom - smooth transition to SplitHero */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1b032a] via-[#1b032a]/40 to-transparent"></div>
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#2a0e4a] via-[#2a0e4a]/40 to-transparent"></div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Header - Clear hierarchy */}

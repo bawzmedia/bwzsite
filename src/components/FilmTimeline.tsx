@@ -92,7 +92,7 @@ export default function FilmTimeline() {
       drawFilmStrip(canvas.height * 0.2, offset1, 0.2, '#E9A820');
       drawTimecodeMarkers(canvas.height * 0.2 - 20, offset1 * 0.5);
 
-      drawFilmStrip(canvas.height * 0.5, offset2, 0.15, '#1b032a');
+      drawFilmStrip(canvas.height * 0.5, offset2, 0.15, '#2a0e4a');
       drawTimecodeMarkers(canvas.height * 0.5 - 20, offset2 * 0.6);
 
       drawFilmStrip(canvas.height * 0.75, offset3, 0.1, '#E9A820');
