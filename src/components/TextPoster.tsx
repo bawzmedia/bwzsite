@@ -64,10 +64,6 @@ export default function TextPoster() {
 
       {/* Main content */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
-        <div className="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] text-black/50 font-bold mb-3 sm:mb-6">
-          THE NUMBERS DON'T LIE
-        </div>
-
         <h2 className="text-[18vw] sm:text-[14vw] md:text-[12vw] lg:text-[10vw] font-black leading-[0.85] text-black mb-4 sm:mb-6">
           EVERY
           <br />
