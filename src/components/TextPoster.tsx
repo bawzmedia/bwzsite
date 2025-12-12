@@ -1,60 +1,25 @@
 export default function TextPoster() {
   return (
-    <section className="relative h-screen flex items-center justify-center bg-[#eaa509] overflow-hidden">
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center bg-[#E9A820] overflow-hidden">
       {/* Animated background pattern */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-black/10 animate-pulse"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
       </div>
 
-      {/* Film Timeline Effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-        <svg className="w-full h-full">
-          {/* Top Film Strip */}
-          <g className="animate-scroll-left">
-            <rect x="0" y="20%" width="100%" height="60" fill="#000000" opacity="0.3"/>
-            {[...Array(30)].map((_, i) => (
-              <g key={i}>
-                <rect x={i * 100 - 100} y="20%" width="80" height="60" fill="none" stroke="#000000" strokeWidth="2"/>
-                <rect x={i * 100 - 94} y="calc(20% - 8)" width="8" height="8" fill="#000000"/>
-                <rect x={i * 100 - 94} y="calc(20% + 60)" width="8" height="8" fill="#000000"/>
-                <rect x={i * 100 - 82} y="calc(20% - 8)" width="8" height="8" fill="#000000"/>
-                <rect x={i * 100 - 82} y="calc(20% + 60)" width="8" height="8" fill="#000000"/>
-                <text x={i * 100 - 85} y="calc(20% + 35)" fill="#000000" fontSize="10" fontFamily="monospace">{String(i).padStart(4, '0')}</text>
-              </g>
-            ))}
-          </g>
-
-          {/* Middle Film Strip */}
-          <g className="animate-scroll-right">
-            {[...Array(30)].map((_, i) => (
-              <g key={i}>
-                <rect x={i * 100} y="50%" width="80" height="60" fill="none" stroke="#000000" strokeWidth="2" opacity="0.3"/>
-                <rect x={i * 100 + 6} y="calc(50% - 8)" width="8" height="8" fill="#000000" opacity="0.3"/>
-                <rect x={i * 100 + 6} y="calc(50% + 60)" width="8" height="8" fill="#000000" opacity="0.3"/>
-              </g>
-            ))}
-          </g>
-
-          {/* Bottom Film Strip */}
-          <g className="animate-scroll-left-slow">
-            {[...Array(30)].map((_, i) => (
-              <g key={i}>
-                <rect x={i * 100 - 50} y="75%" width="80" height="60" fill="none" stroke="#000000" strokeWidth="1" opacity="0.2"/>
-                <rect x={i * 100 - 44} y="calc(75% - 6)" width="6" height="6" fill="#000000" opacity="0.2"/>
-                <rect x={i * 100 - 44} y="calc(75% + 60)" width="6" height="6" fill="#000000" opacity="0.2"/>
-              </g>
-            ))}
-          </g>
-        </svg>
+      {/* Film Strip Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        <div className="absolute top-[20%] left-0 right-0 h-16 bg-black/20 animate-scroll-left"></div>
+        <div className="absolute top-[50%] left-0 right-0 h-12 bg-black/10 animate-scroll-right"></div>
+        <div className="absolute top-[75%] left-0 right-0 h-10 bg-black/15 animate-scroll-left-slow"></div>
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl">
-        <div className="text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] text-black/60 font-bold mb-4 sm:mb-6 md:mb-8">
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="text-xs sm:text-sm tracking-[0.3em] sm:tracking-[0.5em] text-black/50 font-bold mb-4 sm:mb-6">
           THE NUMBERS DON'T LIE
         </div>
 
-        <h2 className="text-[18vw] sm:text-[15vw] md:text-[12vw] font-black leading-[0.9] text-black mb-6 sm:mb-8 md:mb-12">
+        <h2 className="text-[15vw] sm:text-[12vw] md:text-[10vw] font-black leading-[0.9] text-black mb-6 sm:mb-8">
           EVERY
           <br />
           FRAME
@@ -62,8 +27,9 @@ export default function TextPoster() {
           COUNTS
         </h2>
 
-        <p className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-black/80 max-w-4xl mx-auto leading-relaxed px-2">
-          We obsess over every pixel, every transition, every moment. Because mediocre isn't in our vocabulary.
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black/70 max-w-3xl mx-auto leading-relaxed">
+          We obsess over every pixel, every transition, every moment. 
+          <span className="text-black"> Because mediocre isn't in our vocabulary.</span>
         </p>
       </div>
 

@@ -21,7 +21,7 @@ export default function ProjectsGrid() {
       image: '/DSC03782.jpg',
       stat: 'BROADCAST',
       metric: 'CINEMA',
-      summary: 'Full post-production on multiple Yukon fishing episodes, delivering complete edits with colour, sound design, pacing, and narrative flow built for national broadcast. A polished, cinematic series shaped from raw footage into cohesive long-form storytelling for television.'
+      summary: 'Full post-production on multiple Yukon fishing episodes, delivering complete edits with colour, sound design, pacing, and narrative flow built for national broadcast.'
     },
     {
       title: 'DRONE EXHIBITION',
@@ -29,7 +29,7 @@ export default function ProjectsGrid() {
       image: '/DSC04659 1.jpg',
       stat: 'INDIGENOUS',
       metric: 'SKIES',
-      summary: 'Showcasing an Aboriginal owned and operated business teaching drone piloting skills. We documented their exhibition at Edmonton International Airport for future investors and digital presence, highlighting indigenous entrepreneurship in aviation technology and education.'
+      summary: 'Showcasing an Aboriginal owned and operated business teaching drone piloting skills at Edmonton International Airport.'
     },
     {
       title: 'ICE DOME CINEMA',
@@ -37,27 +37,28 @@ export default function ProjectsGrid() {
       image: '/IMG_6320.jpg',
       stat: 'CANADIAN',
       metric: 'CULTURE EXPERIENCE',
-      summary: 'We created and promoted the Ice Dome Cinema — an immersive fishing and film environment combining real underwater footage with a fully enclosed, cinematic winter setup. Designed and produced as a unique Canadian cultural experience, blending outdoor tradition with modern visual storytelling to captivate guests and elevate brand presence.'
+      summary: 'An immersive fishing and film environment combining real underwater footage with a fully enclosed, cinematic winter setup.'
     },
   ];
 
   return (
     <>
-      <section id="portfolio" className="relative min-h-screen bg-black flex items-center overflow-hidden py-12 sm:py-16 md:py-20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+      <section id="portfolio" className="relative py-16 sm:py-20 md:py-24 bg-black overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-[12vw] sm:text-[10vw] md:text-[6vw] font-black leading-none">
+          <div className="text-center mb-12 sm:mb-16">
+            <p className="text-[#E9A820] text-sm font-bold tracking-wider uppercase mb-4">
+              Our Work
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
               <span className="text-white">FEATURED</span>
               <br />
-              <span className="text-[#eaa509]">
-                PROJECTS
-              </span>
+              <span className="text-[#E9A820]">PROJECTS</span>
             </h2>
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -74,26 +75,25 @@ export default function ProjectsGrid() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/70 group-hover:bg-black/80 transition-opacity"></div>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/75 transition-all duration-300"></div>
 
                 {/* Content */}
-                <div className="absolute inset-0 p-2 sm:p-3 md:p-4 flex flex-col justify-between">
-                  {/* Top - Category */}
+                <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between">
+                  {/* Top */}
                   <div className="flex justify-between items-start">
                     <div
-                      className="px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 border transform transition-all duration-500"
+                      className="px-3 py-1.5 border border-[#E9A820] transform transition-all duration-500"
                       style={{
-                        borderColor: '#E9A820',
                         opacity: hoveredIndex === index ? 1 : 0,
-                        translateY: hoveredIndex === index ? 0 : -20
+                        transform: hoveredIndex === index ? 'translateY(0)' : 'translateY(-10px)'
                       }}
                     >
-                      <span className="text-white text-[9px] sm:text-[10px] md:text-xs font-bold tracking-wider sm:tracking-widest">
+                      <span className="text-white text-[10px] sm:text-xs font-bold tracking-wider">
                         {project.category}
                       </span>
                     </div>
                     <div
-                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 border-2 border-white/30 flex items-center justify-center transition-all duration-500"
+                      className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-white/30 flex items-center justify-center transition-all duration-500"
                       style={{
                         borderColor: hoveredIndex === index ? '#E9A820' : 'rgba(255,255,255,0.3)',
                         transform: hoveredIndex === index ? 'rotate(45deg)' : 'rotate(0)',
@@ -101,7 +101,7 @@ export default function ProjectsGrid() {
                       }}
                     >
                       <ArrowUpRight
-                        className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white transition-transform duration-500"
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-white transition-transform duration-500"
                         style={{
                           transform: hoveredIndex === index ? 'rotate(-45deg)' : 'rotate(0)'
                         }}
@@ -109,24 +109,18 @@ export default function ProjectsGrid() {
                     </div>
                   </div>
 
-                  {/* Bottom - Title and stat */}
+                  {/* Bottom */}
                   <div>
-                    <h3 className="text-sm sm:text-base md:text-xl lg:text-2xl font-black text-white mb-1 sm:mb-2 tracking-tight">
+                    <h3 className="text-base sm:text-lg md:text-xl font-black text-white mb-2">
                       {project.title}
                     </h3>
-                    <div className="flex items-end gap-1 sm:gap-2">
-                      <div
-                        className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black mb-0.5 sm:mb-1"
-                        style={{
-                          color: '#E9A820',
-                          textShadow: '0 0 30px #E9A82060'
-                        }}
-                      >
+                    <div className="flex items-end gap-2">
+                      <span className="text-lg sm:text-xl md:text-2xl font-black text-[#E9A820]">
                         {project.stat}
-                      </div>
-                      <div className="text-[9px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.3em] text-gray-400 font-bold mb-1 sm:mb-2">
+                      </span>
+                      <span className="text-[10px] sm:text-xs tracking-wider text-white/50 font-bold mb-1">
                         {project.metric}
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -139,25 +133,22 @@ export default function ProjectsGrid() {
       {/* Modal */}
       {selectedProject !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 sm:p-6 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 sm:p-6"
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-black border-2 overflow-hidden animate-in zoom-in-95 duration-500"
-            style={{
-              borderColor: '#E9A820',
-            }}
+            className="relative max-w-4xl w-full bg-black border-2 border-[#E9A820] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-6 right-6 z-10 w-12 h-12 border-2 border-white/30 flex items-center justify-center hover:border-[#E9A820] hover:bg-[#E9A820]/20 transition-all group"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-[#E9A820] flex items-center justify-center hover:bg-[#f4c430] transition-colors"
             >
-              <X size={24} className="text-white group-hover:text-[#E9A820]" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
             </button>
 
-            {/* Image section */}
+            {/* Image */}
             <div className="relative h-48 sm:h-64 md:h-80 overflow-hidden">
               <img
                 src={projects[selectedProject].image}
@@ -167,43 +158,28 @@ export default function ProjectsGrid() {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
             </div>
 
-            {/* Content section */}
-            <div className="p-4 sm:p-6 md:p-8 lg:p-12">
-              {/* Category badge */}
-              <div
-                className="inline-block px-4 py-2 border mb-6"
-                style={{
-                  borderColor: '#E9A820',
-                }}
-              >
-                <span className="text-white text-xs font-bold tracking-widest">
+            {/* Content */}
+            <div className="p-6 sm:p-8 md:p-10">
+              <div className="inline-block px-4 py-2 border border-[#E9A820] mb-4 sm:mb-6">
+                <span className="text-white text-xs font-bold tracking-wider">
                   {projects[selectedProject].category}
                 </span>
               </div>
 
-              {/* Title */}
-              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 tracking-tight">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4">
                 {projects[selectedProject].title}
               </h3>
 
-              {/* Stats */}
-              <div className="flex items-end gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
-                <div
-                  className="text-3xl sm:text-4xl md:text-5xl font-black"
-                  style={{
-                    color: '#E9A820',
-                    textShadow: `0 0 40px #E9A82060`
-                  }}
-                >
+              <div className="flex items-end gap-3 mb-6 sm:mb-8">
+                <span className="text-3xl sm:text-4xl font-black text-[#E9A820]">
                   {projects[selectedProject].stat}
-                </div>
-                <div className="text-sm tracking-[0.3em] text-gray-400 font-bold mb-2">
+                </span>
+                <span className="text-sm tracking-wider text-white/50 font-bold mb-1">
                   {projects[selectedProject].metric}
-                </div>
+                </span>
               </div>
 
-              {/* Summary */}
-              <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
+              <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                 {projects[selectedProject].summary}
               </p>
             </div>

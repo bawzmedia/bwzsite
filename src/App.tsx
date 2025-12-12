@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import HeroCarousel from './components/HeroCarousel';
+import BrandShowcase from './components/BrandShowcase';
+import ProblemSection from './components/ProblemSection';
+import TextPoster from './components/TextPoster';
+import ServicesShowcase from './components/ServicesShowcase';
 import Guarantee from './components/Guarantee';
 import SplitHero from './components/SplitHero';
-import Services from './components/Services';
-import VideoPoster from './components/VideoPoster';
 import ProjectsGrid from './components/ProjectsGrid';
-import TextPoster from './components/TextPoster';
-import BrandShowcase from './components/BrandShowcase';
+import VideoPoster from './components/VideoPoster';
 import About from './components/About';
 import CTABanner from './components/CTABanner';
 import Navigation from './components/Navigation';
@@ -15,19 +16,14 @@ import FilmTimeline from './components/FilmTimeline';
 import { initSmoothScrolling } from './utils/smoothScroll';
 
 function App() {
-  // Initialize smooth scrolling when app mounts
   useEffect(() => {
-    // Initialize smooth scroll handler for anchor links
     initSmoothScrolling();
 
-    // Optional: Add keyboard navigation for sections
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Only handle if not typing in an input
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
 
-      // Space or Page Down - scroll to next section
       if (e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
         const sections = document.querySelectorAll('section');
@@ -46,7 +42,6 @@ function App() {
         }
       }
 
-      // Page Up - scroll to previous section
       if (e.key === 'PageUp') {
         e.preventDefault();
         const sections = Array.from(document.querySelectorAll('section')).reverse();
@@ -76,16 +71,40 @@ function App() {
     <div className="min-h-screen bg-black overflow-x-hidden">
       <FilmTimeline />
       <Navigation />
+      
+      {/* 1. Hero - Clear value proposition + CTA */}
       <HeroCarousel />
-      <Guarantee />
-      <TextPoster />
+      
+      {/* 2. Social Proof - Trust signals */}
       <BrandShowcase />
+      
+      {/* 3. Problem - Agitate the pain */}
+      <ProblemSection />
+      
+      {/* 4. Statement - Bold visual break (GOLD) */}
+      <TextPoster />
+      
+      {/* 5. Services - Marketing services showcase */}
+      <ServicesShowcase />
+      
+      {/* 6. Guarantee - Risk reversal */}
+      <Guarantee />
+      
+      {/* 7. Creative Statement (PURPLE) */}
       <SplitHero />
-      <Services />
+      
+      {/* 8. Portfolio - Proof of quality */}
       <ProjectsGrid />
+      
+      {/* 9. Showreel - Video proof */}
       <VideoPoster />
+      
+      {/* 10. About - Personal connection */}
       <About />
+      
+      {/* 11. Final CTA */}
       <CTABanner />
+      
       <Footer />
     </div>
   );

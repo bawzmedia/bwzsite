@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,28 +7,16 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      title: 'WE DON\'T MAKE CONTENT',
-      subtitle: 'WE MAKE CULTURE',
       image: '/Supersharp tutorial before.jpeg',
-      color: '#E9A820'
     },
     {
-      title: 'AL-FARUQ ISLAMIC CENTRE',
-      subtitle: 'PRESERVING KNOWLEDGE. HONORING LEGACY.',
       image: '/FR00_SPINE1_01_01_23_13.jpg',
-      color: '#E9A820'
     },
     {
-      title: 'LISA ROPER OUTDOORS',
-      subtitle: 'NATIONAL BROADCAST TELEVISION',
       image: '/DSC04407.jpg',
-      color: '#E9A820'
     },
     {
-      title: 'ATS DRONE SHOW',
-      subtitle: 'EDMONTON INTERNATIONAL AIRPORT',
       image: '/DSC04706.jpg',
-      color: '#E9A820'
     },
   ];
 
@@ -42,19 +30,16 @@ export default function HeroCarousel() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
 
-  const nextSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const scrollToPricing = () => {
+    const pricingSection = document.querySelector('#pricing');
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
     <section id="home" className="relative h-screen overflow-hidden bg-black">
-      {/* Slides */}
+      {/* Background Slides */}
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -64,53 +49,58 @@ export default function HeroCarousel() {
             transform: `scale(${currentSlide === index ? 1 : 1.1})`,
           }}
         >
-          {/* Background image */}
           <img
             src={slide.image}
-            alt={slide.title}
+            alt="Cinematic content"
             className="w-full h-full object-cover"
           />
-
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/50"></div>
-
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center px-6">
-              <h1
-                className="text-[8vw] sm:text-[7vw] md:text-[10vw] font-black leading-none mb-4 md:mb-6"
-                style={{
-                  color: slide.color,
-                  textShadow: `0 0 80px ${slide.color}80, 0 0 40px ${slide.color}40`,
-                  animation: currentSlide === index ? 'glitch 5s infinite' : 'none'
-                }}
-              >
-                {slide.title}
-              </h1>
-              <p className="text-lg sm:text-xl md:text-3xl lg:text-5xl font-black text-white tracking-wider">
-                {slide.subtitle}
-              </p>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
       ))}
 
-      {/* Navigation arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-white/30 flex items-center justify-center hover:border-[#E9A820] hover:bg-[#E9A820]/20 transition-all group z-10"
-      >
-        <ChevronLeft size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8 text-white group-hover:text-[#E9A820]" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-white/30 flex items-center justify-center hover:border-[#E9A820] hover:bg-[#E9A820]/20 transition-all group z-10"
-      >
-        <ChevronRight size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8 text-white group-hover:text-[#E9A820]" />
-      </button>
+      {/* Content */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="text-center px-4 sm:px-6 max-w-5xl mx-auto">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E9A820]/10 border border-[#E9A820]/30 rounded-full mb-6 sm:mb-8">
+            <div className="w-2 h-2 bg-[#E9A820] rounded-full animate-pulse"></div>
+            <span className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase">
+              Content as a Service
+            </span>
+          </div>
 
-      {/* Dots indicator */}
-      <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 md:gap-4 z-10">
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] mb-6 sm:mb-8">
+            <span className="block text-white">CINEMATIC CONTENT.</span>
+            <span className="block text-[#E9A820] mt-2">DELIVERED MONTHLY.</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 font-light max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed">
+            Broadcast-quality video, photography, and social content on subscription. 
+            <span className="text-white font-medium"> No more scrambling for posts.</span>
+          </p>
+
+          {/* CTA Button */}
+          <button
+            onClick={scrollToPricing}
+            className="group inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300 shadow-2xl shadow-[#E9A820]/30 hover:shadow-[#E9A820]/50"
+          >
+            <span className="text-black font-black text-base sm:text-lg md:text-xl tracking-wide">
+              EXPLORE SERVICES
+            </span>
+            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-black group-hover:translate-x-1 transition-transform" />
+          </button>
+
+          {/* Trust indicator */}
+          <p className="mt-6 sm:mt-8 text-white/50 text-sm">
+            Trusted by broadcast networks, construction firms & outdoor brands
+          </p>
+        </div>
+      </div>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -120,14 +110,22 @@ export default function HeroCarousel() {
             }}
             className="transition-all duration-300"
             style={{
-              width: currentSlide === index ? '64px' : '32px',
+              width: currentSlide === index ? '48px' : '24px',
               height: '4px',
               background: currentSlide === index
-                ? `#eaa509`
+                ? '#E9A820'
                 : 'rgba(255,255,255,0.3)',
             }}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 right-8 text-white/30 hidden lg:block">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs tracking-widest rotate-90 origin-center translate-y-6">SCROLL</span>
+        </div>
       </div>
     </section>
   );
