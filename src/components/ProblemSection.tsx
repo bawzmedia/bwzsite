@@ -1,96 +1,84 @@
-import { Clock, TrendingDown, DollarSign, Frown } from 'lucide-react';
-
 export default function ProblemSection() {
   const problems = [
     {
-      icon: Clock,
       title: 'No Time to Create',
-      description: "You're running a business, not a content studio. Every hour on content is an hour away from growth.",
-      color: '#E9A820',
+      description: "Between client calls, operations, and growing your business, content creation always falls to the bottom of the list. You know you need it, but there's never enough hours in the day.",
+      image: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80',
     },
     {
-      icon: TrendingDown,
       title: 'Inconsistent Posting',
-      description: "One week you're on fire, the next you disappear. The algorithm punishes inconsistency.",
-      color: '#1b032a',
+      description: "You start strong with a content plan, but life happens. Weeks go by without a post, and rebuilding momentum feels like starting from scratch every time.",
+      image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80',
     },
     {
-      icon: DollarSign,
       title: 'In-House is Expensive',
-      description: "A full-time videographer costs $60K+/year. Equipment, software, training—it adds up fast.",
-      color: '#E9A820',
+      description: "Hiring a full-time videographer means $60K+ in salary, plus equipment, software, and training. For most businesses, the math just doesn't work.",
+      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
     },
     {
-      icon: Frown,
-      title: 'Amateur Visuals Hurt',
-      description: "Your competitors look polished. Your phone videos make you look like a hobby, not a business.",
-      color: '#1b032a',
+      title: 'Quality Matters',
+      description: "You've seen what professional content does for your competitors. Your brand deserves the same level of polish, but finding reliable creative partners is exhausting.",
+      image: 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800&q=80',
     },
   ];
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 bg-gradient-to-b from-black via-[#0a0a0a] to-black overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-0 bg-gradient-to-br from-[#1b032a] via-[#2d0845] to-[#1b032a] overflow-hidden">
       {/* Background effects */}
-      <div className="absolute top-1/2 -left-32 w-64 h-64 bg-[#E9A820] rounded-full blur-[150px] opacity-10"></div>
-      <div className="absolute top-1/2 -right-32 w-64 h-64 bg-[#1b032a] rounded-full blur-[150px] opacity-20"></div>
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(233,168,32,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(233,168,32,0.08)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+      </div>
       
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <p className="text-[#E9A820] text-sm font-bold tracking-wider uppercase mb-4">
+        <div className="text-center mb-6 sm:mb-8">
+          <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-2">
             The Content Struggle is Real
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
             DOES THIS <span className="text-[#E9A820]">SOUND FAMILIAR?</span>
           </h2>
         </div>
 
-        {/* Problems Grid */}
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+        {/* Quadrant Grid - 2x2 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-5xl mx-auto">
           {problems.map((problem, index) => (
             <div
               key={index}
-              className="group relative p-6 sm:p-8 bg-white/[0.02] border border-white/10 hover:border-opacity-50 transition-all duration-300"
-              style={{ 
-                borderColor: `${problem.color}30`,
-              }}
+              className="group relative overflow-hidden border border-white/10"
             >
-              {/* Hover glow */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(ellipse at center, ${problem.color}10 0%, transparent 70%)`
-                }}
-              ></div>
-
-              {/* Icon */}
-              <div 
-                className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center mb-4 sm:mb-6 transition-colors"
-                style={{ 
-                  backgroundColor: `${problem.color}20`,
-                  border: `1px solid ${problem.color}40`
-                }}
-              >
-                <problem.icon 
-                  className="w-6 h-6 sm:w-7 sm:h-7" 
-                  style={{ color: problem.color }}
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img 
+                  src={problem.image} 
+                  alt={problem.title}
+                  className="w-full h-full object-cover"
                 />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b032a] via-[#1b032a]/80 to-[#1b032a]/40"></div>
               </div>
 
               {/* Content */}
-              <h3 className="relative text-lg sm:text-xl font-black text-white mb-2 sm:mb-3">
-                {problem.title}
-              </h3>
-              <p className="relative text-sm sm:text-base text-white/60 leading-relaxed">
-                {problem.description}
-              </p>
+              <div className="relative p-5 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white mb-2 sm:mb-3">
+                  {problem.title}
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed">
+                  {problem.description}
+                </p>
+              </div>
+
+              {/* Corner Accent */}
+              <div className="absolute top-3 right-3 w-5 h-5 sm:w-6 sm:h-6 border-t-2 border-r-2 border-[#E9A820]/50"></div>
             </div>
           ))}
         </div>
 
         {/* Bottom text */}
-        <div className="text-center mt-12 sm:mt-16">
-          <p className="text-xl sm:text-2xl md:text-3xl font-black text-white">
+        <div className="text-center mt-8 sm:mt-10">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white">
             There's a better way.{' '}
             <span className="text-[#E9A820]">We handle it all.</span>
           </p>

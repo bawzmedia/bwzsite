@@ -8,15 +8,19 @@ export default function HeroCarousel() {
   const slides = [
     {
       image: '/Supersharp tutorial before.jpeg',
+      overlay: true,
     },
     {
       image: '/FR00_SPINE1_01_01_23_13.jpg',
+      overlay: true,
     },
     {
       image: '/DSC04407.jpg',
+      overlay: false,
     },
     {
       image: '/DSC04706.jpg',
+      overlay: true,
     },
   ];
 
@@ -38,12 +42,12 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden bg-black">
-      {/* Background Slides */}
+    <section id="home" className="relative min-h-[100svh] overflow-hidden bg-black">
+      {/* Background Slides - z-10 to be above FilmTimeline */}
       {slides.map((slide, index) => (
         <div
           key={index}
-          className="absolute inset-0 transition-all duration-1000"
+          className="absolute inset-0 transition-all duration-1000 z-[1]"
           style={{
             opacity: currentSlide === index ? 1 : 0,
             transform: `scale(${currentSlide === index ? 1 : 1.1})`,
@@ -54,29 +58,23 @@ export default function HeroCarousel() {
             alt="Cinematic content"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/60"></div>
+          {slide.overlay && (
+            <div className="absolute inset-0 bg-black/50"></div>
+          )}
         </div>
       ))}
 
-      {/* Content */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center px-4 sm:px-6 max-w-5xl mx-auto">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E9A820]/10 border border-[#E9A820]/30 rounded-full mb-6 sm:mb-8">
-            <div className="w-2 h-2 bg-[#E9A820] rounded-full animate-pulse"></div>
-            <span className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase">
-              Content as a Service
-            </span>
-          </div>
-
+      {/* Content - z-10 to be above slides */}
+      <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 z-10">
+        <div className="text-center max-w-5xl mx-auto">
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] mb-6 sm:mb-8">
-            <span className="block text-white">CINEMATIC CONTENT.</span>
-            <span className="block text-[#E9A820] mt-2">DELIVERED MONTHLY.</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1] mb-4 sm:mb-6">
+            <span className="block text-white drop-shadow-lg">CINEMATIC CONTENT.</span>
+            <span className="block text-[#E9A820] mt-1 sm:mt-2 drop-shadow-lg">DELIVERED MONTHLY.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 font-light max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-light max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
             Broadcast-quality video, photography, and social content on subscription. 
             <span className="text-white font-medium"> No more scrambling for posts.</span>
           </p>
@@ -84,23 +82,23 @@ export default function HeroCarousel() {
           {/* CTA Button */}
           <button
             onClick={scrollToPricing}
-            className="group inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300 shadow-2xl shadow-[#E9A820]/30 hover:shadow-[#E9A820]/50"
+            className="group inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-3 sm:py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300 shadow-2xl shadow-[#E9A820]/30"
           >
-            <span className="text-black font-black text-base sm:text-lg md:text-xl tracking-wide">
+            <span className="text-black font-black text-sm sm:text-base md:text-lg tracking-wide">
               EXPLORE SERVICES
             </span>
-            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-black group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-black group-hover:translate-x-1 transition-transform" />
           </button>
 
           {/* Trust indicator */}
-          <p className="mt-6 sm:mt-8 text-white/50 text-sm">
+          <p className="mt-4 sm:mt-6 text-white/60 text-xs sm:text-sm px-4">
             Trusted by broadcast networks, construction firms & outdoor brands
           </p>
         </div>
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10">
+      <div className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -110,8 +108,8 @@ export default function HeroCarousel() {
             }}
             className="transition-all duration-300"
             style={{
-              width: currentSlide === index ? '48px' : '24px',
-              height: '4px',
+              width: currentSlide === index ? '32px' : '16px',
+              height: '3px',
               background: currentSlide === index
                 ? '#E9A820'
                 : 'rgba(255,255,255,0.3)',
@@ -119,13 +117,6 @@ export default function HeroCarousel() {
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 right-8 text-white/30 hidden lg:block">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs tracking-widest rotate-90 origin-center translate-y-6">SCROLL</span>
-        </div>
       </div>
     </section>
   );
