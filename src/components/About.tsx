@@ -13,11 +13,6 @@ export default function About() {
 
   return (
     <section id="about" className="relative min-h-[100svh] bg-black overflow-hidden flex items-center py-12 sm:py-0">
-      {/* Purple glow from top - seamless transition from VideoPoster */}
-      <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-[#1b032a]/30 via-[#1b032a]/10 to-transparent"></div>
-      <div className="absolute -top-20 left-1/4 w-[400px] h-[300px] bg-[#1b032a] rounded-full blur-[180px] opacity-40"></div>
-      <div className="absolute -top-10 right-1/3 w-[300px] h-[250px] bg-[#2d0845] rounded-full blur-[150px] opacity-30"></div>
-
       {/* Faint grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
       

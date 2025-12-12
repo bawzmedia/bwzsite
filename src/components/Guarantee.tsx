@@ -29,6 +29,11 @@ export default function Guarantee() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E9A820]/5 to-transparent"></div>
 
+        {/* Purple glow from bottom - smooth transition to next section */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#1b032a]/40 via-[#1b032a]/15 to-transparent"></div>
+        <div className="absolute -bottom-20 left-1/4 w-[500px] h-[400px] bg-[#1b032a] rounded-full blur-[200px] opacity-50"></div>
+        <div className="absolute -bottom-10 right-1/3 w-[400px] h-[300px] bg-[#2d0845] rounded-full blur-[180px] opacity-40"></div>
+
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Header - Clear hierarchy */}
           <div className="text-center mb-12 sm:mb-16">
