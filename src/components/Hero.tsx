@@ -96,7 +96,7 @@ export default function Hero() {
           {/* Glitch layers */}
           <div className="absolute inset-0 text-[12vw] md:text-[10vw] font-black leading-none text-center opacity-20 mix-blend-overlay" style={{
             transform: 'translate(-2px, -2px)',
-            color: '#2a0e4a',
+            color: '#1a0832',
             animation: 'glitch-1 2s infinite'
           }} aria-hidden="true">
             <span className="block">WORLD CLASS</span>

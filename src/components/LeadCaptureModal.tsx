@@ -60,7 +60,7 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
       ></div>
 
       <div 
-        className="relative w-full max-w-2xl bg-gradient-to-b from-[#2a0e4a] to-black border-2 border-[#E9A820]/30 rounded-lg shadow-2xl overflow-hidden animate-slide-up"
+        className="relative w-full max-w-2xl bg-gradient-to-b from-[#1a0832] to-black border-2 border-[#E9A820]/30 rounded-lg shadow-2xl overflow-hidden animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         <button

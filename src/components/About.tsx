@@ -17,7 +17,7 @@ export default function About() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
       
       {/* Background effects */}
-      <div className="absolute top-1/2 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-[#2a0e4a] blur-[100px] sm:blur-[150px] opacity-20"></div>
+      <div className="absolute top-1/2 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-[#1a0832] blur-[100px] sm:blur-[150px] opacity-20"></div>
       <div className="absolute top-1/2 right-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-[#E9A820] blur-[100px] sm:blur-[150px] opacity-10"></div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -56,11 +56,11 @@ export default function About() {
                 style={{ transform: isHovered ? 'translate(-4px, -4px)' : 'translate(0, 0)' }}
               ></div>
               <div 
-                className="absolute top-0 right-0 w-10 h-10 sm:w-16 sm:h-16 border-t-2 sm:border-t-4 border-r-2 sm:border-r-4 border-[#2a0e4a] transition-all duration-500"
+                className="absolute top-0 right-0 w-10 h-10 sm:w-16 sm:h-16 border-t-2 sm:border-t-4 border-r-2 sm:border-r-4 border-[#1a0832] transition-all duration-500"
                 style={{ transform: isHovered ? 'translate(4px, -4px)' : 'translate(0, 0)' }}
               ></div>
               <div 
-                className="absolute bottom-0 left-0 w-10 h-10 sm:w-16 sm:h-16 border-b-2 sm:border-b-4 border-l-2 sm:border-l-4 border-[#2a0e4a] transition-all duration-500"
+                className="absolute bottom-0 left-0 w-10 h-10 sm:w-16 sm:h-16 border-b-2 sm:border-b-4 border-l-2 sm:border-l-4 border-[#1a0832] transition-all duration-500"
                 style={{ transform: isHovered ? 'translate(-4px, 4px)' : 'translate(0, 0)' }}
               ></div>
               <div 
@@ -69,7 +69,7 @@ export default function About() {
               ></div>
 
               {/* Floating badges */}
-              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 p-2 sm:p-3 bg-[#2a0e4a] shadow-2xl shadow-[#2a0e4a]/50 animate-float">
+              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 p-2 sm:p-3 bg-[#1a0832] shadow-2xl shadow-[#1a0832]/50 animate-float">
                 <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
               <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 p-2 sm:p-3 bg-[#E9A820] shadow-2xl shadow-[#E9A820]/50 animate-float" style={{ animationDelay: '1.5s' }}>

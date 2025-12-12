@@ -23,7 +23,7 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-gradient-to-br from-[#2a0e4a] via-[#3d1a5c] to-[#2a0e4a] overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-gradient-to-br from-[#1a0832] via-[#2a0e45] to-[#1a0832] overflow-hidden">
       {/* Background effects - Purple with grid */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(233,168,32,0.1)_0%,transparent_50%)]"></div>
