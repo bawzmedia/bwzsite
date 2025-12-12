@@ -1,12 +1,46 @@
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function VideoPoster() {
+  const [isMuted, setIsMuted] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const toggleMute = () => {
+    if (iframeRef.current) {
+      const message = isMuted 
+        ? '{"method":"setVolume","value":1}' 
+        : '{"method":"setVolume","value":0}';
+      iframeRef.current.contentWindow?.postMessage(message, '*');
+      setIsMuted(!isMuted);
+    }
+  };
+
+  // Initialize Vimeo player when iframe loads
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Handle Vimeo player events if needed
+      if (event.origin.includes('vimeo.com')) {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.event === 'ready') {
+            // Player is ready
+          }
+        } catch {
+          // Not a JSON message, ignore
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   return (
     <section className="relative min-h-[100svh] flex items-center bg-black overflow-hidden">
@@ -84,7 +118,8 @@ export default function VideoPoster() {
               {/* Video container with 9:16 aspect ratio */}
               <div className="relative overflow-hidden" style={{ paddingTop: '177.78%' }}>
                 <iframe 
-                  src="https://player.vimeo.com/video/1145990707?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=1&background=1"
+                  ref={iframeRef}
+                  src="https://player.vimeo.com/video/1145990707?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0"
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -94,6 +129,19 @@ export default function VideoPoster() {
                 
                 {/* Scan lines overlay */}
                 <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] opacity-10"></div>
+
+                {/* Mute/Unmute Button - Floating */}
+                <button
+                  onClick={toggleMute}
+                  className="absolute bottom-4 right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 backdrop-blur-sm border border-[#E9A820]/50 flex items-center justify-center hover:bg-[#E9A820] hover:border-[#E9A820] transition-all duration-300 group"
+                  aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-5 h-5 sm:w-6 sm:h-6 text-[#E9A820] group-hover:text-black transition-colors" />
+                  ) : (
+                    <Volume2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#E9A820] group-hover:text-black transition-colors" />
+                  )}
+                </button>
               </div>
 
               {/* Overlapping Border Frame - 8pt overlap */}
