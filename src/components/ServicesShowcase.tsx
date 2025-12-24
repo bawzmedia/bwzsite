@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Video, Bot, Rocket, ArrowRight, Play, Zap, Target, Sparkles } from 'lucide-react';
+import { Video, Bot, Rocket, ArrowRight, Zap, Target, Sparkles } from 'lucide-react';
 import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
 import { IMAGES } from '../content/images';
 
@@ -9,55 +9,55 @@ export default function ServicesShowcase() {
 
   const services = [
     {
-      id: 'caas',
+      id: 'video',
       icon: Video,
-      badge: 'Core Offering',
-      title: 'CONTENT AS A SERVICE',
-      shortTitle: 'CONTENT',
-      tagline: 'Your dedicated content team, without the overhead.',
-      description: 'Cinematic video, professional photography, and social content delivered monthly. We become your in-house creative department.',
+      badge: 'Primary Wedge',
+      title: 'VIDEO MARKETING',
+      shortTitle: 'VIDEO',
+      tagline: 'Video Marketing That Attracts Qualified Clients',
+      description: 'We plan, produce, and manage revenue-focused video content designed to build trust, demonstrate authority, and attract qualified clients consistently—without requiring your involvement. This replaces sporadic posting, internal coordination, and the need to constantly decide what gets created next.',
       highlights: [
-        { icon: Play, text: 'Cinematic reels & promos' },
-        { icon: Target, text: 'Professional photography' },
-        { icon: Zap, text: 'Monthly content calendars' },
-        { icon: Sparkles, text: 'Campaign strategy' },
+        { icon: Target, text: 'Consistent market presence without oversight' },
+        { icon: Sparkles, text: 'Higher trust before the first conversation' },
+        { icon: Zap, text: 'No internal content management or direction' },
       ],
       image: IMAGES.services.contentAsAService,
       color: '#E9A820',
+      cta: 'Apply for Video Marketing',
     },
     {
       id: 'ai',
       icon: Bot,
-      badge: 'Enterprise Solution',
-      title: 'AI AUTOMATION',
+      badge: 'Content + Systems',
+      title: 'AI MARKETING',
       shortTitle: 'AI',
-      tagline: 'Systems that work while you sleep.',
-      description: 'Custom AI agents, automated workflows, and intelligent funnels that handle sales, support, and lead nurturing 24/7.',
+      tagline: 'AI Marketing Systems That Run Without Supervision',
+      description: 'We build AI-driven content and automation systems that capture leads, handle follow-up, and nurture prospects automatically—so growth does not depend on your availability. This turns attention into revenue without adding headcount or complexity.',
       highlights: [
-        { icon: Bot, text: 'AI sales & support agents' },
-        { icon: Zap, text: 'Automated lead nurturing' },
-        { icon: Target, text: 'Smart funnel systems' },
-        { icon: Sparkles, text: 'Custom integrations' },
+        { icon: Zap, text: 'Automated lead capture and follow-up' },
+        { icon: Target, text: 'Faster response times and higher conversion' },
+        { icon: Sparkles, text: 'Marketing that runs while you focus elsewhere' },
       ],
       image: IMAGES.services.aiAutomation,
       color: '#2d1654',
+      cta: 'Apply for AI Marketing',
     },
     {
-      id: 'production',
+      id: 'brand',
       icon: Rocket,
-      badge: 'Project-Based',
-      title: 'CREATIVE PRODUCTION',
-      shortTitle: 'PRODUCTION',
-      tagline: 'One-off projects that make an impact.',
-      description: 'Campaign films, brand videos, commercial shoots, and documentary-style content for exceptional moments.',
+      badge: 'Authority Play',
+      title: 'BRAND DEVELOPMENT',
+      shortTitle: 'BRAND',
+      tagline: 'Brand Development for Companies Ready to Level Up',
+      description: 'We clarify and elevate your brand so prospects instantly understand your value, trust your expertise, and see you as the obvious choice—before price becomes a factor. This is for businesses entering a new growth phase, market, or tier.',
       highlights: [
-        { icon: Play, text: 'Campaign & brand films' },
-        { icon: Target, text: 'Commercial production' },
-        { icon: Zap, text: 'Documentary storytelling' },
-        { icon: Sparkles, text: 'Event coverage' },
+        { icon: Target, text: 'Clear positioning and messaging' },
+        { icon: Sparkles, text: 'Stronger perceived authority' },
+        { icon: Zap, text: 'Easier, shorter sales conversations' },
       ],
       image: IMAGES.services.creativeProduction,
       color: '#E9A820',
+      cta: 'Apply for Brand Development',
     },
   ];
 
@@ -146,7 +146,7 @@ export default function ServicesShowcase() {
                   onClick={() => setIsModalOpen(true)}
                   className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#E9A820] text-black font-black text-sm"
                 >
-                  APPLY NOW
+                  {currentService.cta?.toUpperCase() || 'APPLY NOW'}
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -257,7 +257,7 @@ export default function ServicesShowcase() {
                     className="inline-flex items-center gap-3 px-8 py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300"
                   >
                     <span className="text-black font-black text-base tracking-wide">
-                      APPLY FOR {service.shortTitle}
+                      {service.cta?.toUpperCase() || `APPLY FOR ${service.shortTitle}`}
                     </span>
                     <ArrowRight className="w-5 h-5 text-black" />
                   </button>
@@ -269,7 +269,7 @@ export default function ServicesShowcase() {
           {/* Bottom note */}
           <div className="text-center mt-8 sm:mt-12">
             <p className="text-white/40 text-xs sm:text-sm px-4">
-              Not sure which service fits? <span className="text-[#E9A820]">Apply anyway</span> — we'll build a custom solution.
+              Not sure which path fits? <span className="text-[#E9A820]">Apply anyway.</span> We will recommend the highest-leverage option for your business.
             </p>
           </div>
         </div>
