@@ -211,18 +211,18 @@ export default function ServicesShowcase() {
             </div>
 
             {/* Right - Service Details */}
-            <div className="relative min-h-[520px]">
+            <div className="relative h-[580px]">
               {services.map((service, index) => (
                 <div
                   key={service.id}
-                  className={`flex flex-col h-full transition-all duration-700 ${
+                  className={`absolute inset-0 flex flex-col transition-all duration-700 ${
                     activeService === index 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-8 absolute inset-0 pointer-events-none'
+                      ? 'opacity-100 z-10' 
+                      : 'opacity-0 z-0 pointer-events-none'
                   }`}
                 >
                   <div 
-                    className="relative aspect-video mb-5 overflow-hidden border-2 transition-colors duration-500"
+                    className="relative aspect-video mb-5 overflow-hidden border-2 transition-colors duration-500 flex-shrink-0"
                     style={{ borderColor: service.color }}
                   >
                     <img
@@ -239,28 +239,32 @@ export default function ServicesShowcase() {
                     </div>
                   </div>
 
-                  <p className="text-base text-white/70 leading-relaxed mb-5 min-h-[96px]">
-                    {service.description}
-                  </p>
+                  <div className="flex-1 flex flex-col">
+                    <p className="text-base text-white/70 leading-relaxed mb-5 line-clamp-4">
+                      {service.description}
+                    </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6 min-h-[72px]">
-                    {service.highlights.map((highlight, hIndex) => (
-                      <div key={hIndex} className="flex items-center gap-2">
-                        <highlight.icon className="w-4 h-4 text-[#E9A820] flex-shrink-0" />
-                        <span className="text-sm text-white/80">{highlight.text}</span>
-                      </div>
-                    ))}
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                      {service.highlights.map((highlight, hIndex) => (
+                        <div key={hIndex} className="flex items-start gap-2">
+                          <highlight.icon className="w-4 h-4 text-[#E9A820] flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-white/80 line-clamp-2">{highlight.text}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-auto">
+                      <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300"
+                      >
+                        <span className="text-black font-black text-base tracking-wide">
+                          {service.cta?.toUpperCase() || `APPLY FOR ${service.shortTitle}`}
+                        </span>
+                        <ArrowRight className="w-5 h-5 text-black" />
+                      </button>
+                    </div>
                   </div>
-
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300"
-                  >
-                    <span className="text-black font-black text-base tracking-wide">
-                      {service.cta?.toUpperCase() || `APPLY FOR ${service.shortTitle}`}
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-black" />
-                  </button>
                 </div>
               ))}
             </div>
