@@ -24,7 +24,7 @@ export const IMAGES = {
     main: '/A7404497.jpg',
   },
   services: {
-    contentAsAService: '/DSC04407.jpg',
+    contentAsAService: '/industrialvideomarketing.png',
     aiAutomation: '/n8nworkflow.png',
     creativeProduction: '/LedcorExample_compressed.jpg',
   },
