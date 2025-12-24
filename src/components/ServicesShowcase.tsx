@@ -82,13 +82,13 @@ export default function ServicesShowcase() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           {/* Header */}
           <div className="text-center mb-6 sm:mb-10">
-            <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-2">
-              Marketing Services
-            </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
               <span className="block">HOW WE REMOVE MARKETING</span>
               <span className="block text-[#E9A820]">FROM YOUR PLATE</span>
             </h2>
+            <p className="text-white/70 text-sm sm:text-base md:text-lg mt-4 max-w-2xl mx-auto">
+              Three ways to create leverage, depending on where your business is right now.
+            </p>
           </div>
 
           {/* Mobile: Tabs + Content */}
