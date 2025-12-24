@@ -4,25 +4,25 @@ export default function ProblemSection() {
       title: 'Time Pressure',
       subtitle: 'Marketing Keeps Falling Down the Priority List',
       description: "Between sales calls, operations, and leadership decisions, marketing gets pushed aside. Not because it is unimportant, but because higher-leverage work keeps taking precedence.",
-      image: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80',
+      image: '/timepressure.png',
     },
     {
       title: 'Consistency Gap',
       subtitle: 'Momentum Is Hard to Maintain',
       description: "You start with a plan. Then the business demands attention elsewhere. Weeks pass, visibility drops, and restarting feels like rebuilding from zero again.",
-      image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80',
+      image: '/consistancygap.png',
     },
     {
       title: 'Internal Cost',
       subtitle: 'Doing This In-House Rarely Makes Sense',
       description: "Hiring full-time talent means salary, tools, management, and constant direction. For most companies, the cost and distraction outweigh the upside.",
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+      image: '/internalcost.png',
     },
     {
       title: 'Reputation Risk',
       subtitle: 'Your Brand Is Being Judged Quietly',
       description: "Prospects compare you to competitors who look established and active. Inconsistent or low-quality content signals stagnation, even when the business is strong.",
-      image: 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800&q=80',
+      image: '/reputationrisk.png',
     },
   ];
 
