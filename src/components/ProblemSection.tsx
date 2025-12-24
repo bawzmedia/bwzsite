@@ -97,8 +97,8 @@ export default function ProblemSection() {
         {/* Bottom text */}
         <div className="text-center mt-10 sm:mt-12">
           <p className="text-base sm:text-lg md:text-xl font-bold text-white">
-            There's a better way.{' '}
-            <span className="text-[#E9A820]">We handle it all.</span>
+            The solution is not more effort.{' '}
+            <span className="text-[#E9A820]">It is better systems.</span>
           </p>
         </div>
       </div>
