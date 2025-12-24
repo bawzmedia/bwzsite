@@ -12,9 +12,7 @@ export const IMAGES = {
   },
   heroSlides: {
     slide1: '/bawzmedia_massive_heavy-duty_rock_trucks_at_a_mining_site_thi_5a5c26e9-e444-4643-b78d-ba5a8f779a20_3.png',
-    slide2: '/FR00_SPINE1_01_01_23_13.jpg',
-    slide3: '/DSC04407.jpg',
-    slide4: '/Supersharp tutorial before.jpeg',
+    slide2: '/Supersharp tutorial before.jpeg',
   },
   navigation: {
     logo: '/Bawzmedia Main Logo.png',

@@ -15,14 +15,6 @@ export default function HeroCarousel() {
       image: IMAGES.heroSlides.slide2,
       overlay: true,
     },
-    {
-      image: IMAGES.heroSlides.slide3,
-      overlay: false,
-    },
-    {
-      image: IMAGES.heroSlides.slide4,
-      overlay: true,
-    },
   ];
 
   useEffect(() => {
