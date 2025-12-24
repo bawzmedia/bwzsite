@@ -77,8 +77,7 @@ export default function HeroCarousel() {
 
           {/* Subheadline */}
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-light max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-            Either you want more qualified clients, or you want marketing handled without stealing your time.
-            <span className="text-white font-medium"> We build revenue-focused video, AI content systems, and brands that work in the background while you run the business.</span>
+            Revenue-focused video, AI content systems, and brand development built for decision-makers.
           </p>
 
           {/* CTA Button */}
