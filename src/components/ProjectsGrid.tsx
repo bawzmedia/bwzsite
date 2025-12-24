@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
+import { IMAGES } from '../content/images';
 
 export default function ProjectsGrid() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -9,7 +10,7 @@ export default function ProjectsGrid() {
     {
       title: 'LEDCOR',
       category: 'CAMPAIGN FILM',
-      image: '/LedcorExample_compressed.jpg',
+      image: IMAGES.projects.ledcor,
       stat: 'VALUES',
       metric: 'DRIVEN',
       summary: 'Celebrating International Women\'s Day through powerful storytelling, highlighting diversity and inclusion in construction.'
@@ -17,7 +18,7 @@ export default function ProjectsGrid() {
     {
       title: 'YUKON',
       category: 'BROADCAST',
-      image: '/DSC03782.jpg',
+      image: IMAGES.projects.yukon,
       stat: 'BROADCAST',
       metric: 'CINEMA',
       summary: 'Full post-production on multiple Yukon fishing episodes for national broadcast.'
@@ -25,7 +26,7 @@ export default function ProjectsGrid() {
     {
       title: 'DRONE',
       category: 'SHOWCASE',
-      image: '/DSC04659 1.jpg',
+      image: IMAGES.projects.drone,
       stat: 'INDIGENOUS',
       metric: 'SKIES',
       summary: 'Showcasing Aboriginal drone piloting skills at Edmonton International Airport.'
@@ -33,7 +34,7 @@ export default function ProjectsGrid() {
     {
       title: 'ICE DOME',
       category: 'EXPERIENTIAL',
-      image: '/IMG_6320.jpg',
+      image: IMAGES.projects.iceDome,
       stat: 'CANADIAN',
       metric: 'CULTURE',
       summary: 'Immersive fishing and film environment combining underwater footage with cinematic setup.'

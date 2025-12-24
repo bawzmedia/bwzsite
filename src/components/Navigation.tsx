@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { smoothScrollTo } from '../utils/smoothScroll';
 import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
+import { IMAGES } from '../content/images';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +59,7 @@ export default function Navigation() {
               onClick={(e) => handleNavClick(e, '#home')}
               className="flex items-center hover:opacity-80 transition-opacity relative z-50"
             >
-              <img src="/Bawzmedia Main Logo.png" alt="Bawzmedia" className="h-6 sm:h-7" />
+              <img src={IMAGES.navigation.logo} alt="Bawzmedia" className="h-6 sm:h-7" />
             </a>
 
             {/* Desktop Nav */}

@@ -48,7 +48,7 @@ export default function Contact() {
     >
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1a0a0f] to-black"></div>
-      
+
       {/* Animated glowing orbs */}
       <div className="absolute top-1/4 -left-48 w-96 h-96 bg-[#eaa509] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute top-1/3 -right-48 w-96 h-96 bg-[#f4c430] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
@@ -91,21 +91,21 @@ export default function Contact() {
                     Your Name
                   </label>
                   <div className="relative">
-                    <input
-                      type="text"
+                <input
+                  type="text"
                       placeholder="John Doe"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       onFocus={() => setFocusedField('name')}
                       onBlur={() => setFocusedField(null)}
-                      required
+                  required
                       className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white text-lg placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
-                    />
+                />
                     {focusedField === 'name' && (
                       <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent"></div>
                     )}
                   </div>
-                </div>
+              </div>
 
                 {/* Email Field */}
                 <div className="space-y-2">
@@ -113,21 +113,21 @@ export default function Contact() {
                     Email Address
                   </label>
                   <div className="relative">
-                    <input
-                      type="email"
+                <input
+                  type="email"
                       placeholder="john@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField(null)}
-                      required
+                  required
                       className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white text-lg placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] transition-all duration-300"
-                    />
+                />
                     {focusedField === 'email' && (
                       <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent"></div>
                     )}
                   </div>
-                </div>
+              </div>
 
                 {/* Message Field */}
                 <div className="space-y-2">
@@ -135,45 +135,45 @@ export default function Contact() {
                     Your Message
                   </label>
                   <div className="relative">
-                    <textarea
+                <textarea
                       placeholder="Tell us about your project..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       onFocus={() => setFocusedField('message')}
                       onBlur={() => setFocusedField(null)}
-                      required
+                  required
                       rows={6}
                       className="w-full bg-white/5 border-2 border-white/10 rounded-xl px-6 py-4 text-white text-lg placeholder:text-gray-600 focus:outline-none focus:border-[#eaa509] transition-all duration-300 resize-none"
-                    />
+                />
                     {focusedField === 'message' && (
                       <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#eaa509] to-transparent"></div>
                     )}
                   </div>
-                </div>
+              </div>
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={!isFormValid || isSubmitting}
+              <button
+                type="submit"
+                disabled={!isFormValid || isSubmitting}
                   className="group relative w-full overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                >
+              >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#eaa509] to-[#f4c430]"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#f4c430] to-[#eaa509] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
                   <span className="relative flex items-center justify-center gap-3 text-black font-bold text-lg px-8 py-5">
-                    {isSubmitting ? (
-                      <>
+                  {isSubmitting ? (
+                    <>
                         <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
                         SENDING...
-                      </>
-                    ) : (
-                      <>
-                        SEND MESSAGE
+                    </>
+                  ) : (
+                    <>
+                      SEND MESSAGE
                         <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </>
-                    )}
-                  </span>
-                </button>
+                    </>
+                  )}
+                </span>
+              </button>
               </div>
             </form>
           </div>
@@ -190,7 +190,7 @@ export default function Contact() {
                 <CheckCircle2 className="w-16 h-16 text-black" strokeWidth={3} />
               </div>
             </div>
-            
+
             <div className="space-y-4">
               <h3 className="text-5xl sm:text-6xl md:text-7xl font-black text-white">
                 MESSAGE<br/>
@@ -216,10 +216,10 @@ export default function Contact() {
           }
           25% {
             transform: translate(20px, -50px) scale(1.1);
-          }
+        }
           50% {
             transform: translate(-20px, 20px) scale(0.9);
-          }
+        }
           75% {
             transform: translate(50px, 50px) scale(1.05);
           }

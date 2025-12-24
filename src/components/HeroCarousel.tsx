@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { IMAGES } from '../content/images';
 
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,19 +8,19 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: '/Supersharp tutorial before.jpeg',
+      image: IMAGES.heroSlides.slide1,
       overlay: true,
     },
     {
-      image: '/FR00_SPINE1_01_01_23_13.jpg',
+      image: IMAGES.heroSlides.slide2,
       overlay: true,
     },
     {
-      image: '/DSC04407.jpg',
+      image: IMAGES.heroSlides.slide3,
       overlay: false,
     },
     {
-      image: '/DSC04706.jpg',
+      image: IMAGES.heroSlides.slide4,
       overlay: true,
     },
   ];

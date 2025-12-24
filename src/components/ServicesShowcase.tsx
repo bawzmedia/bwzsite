@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Video, Bot, Rocket, ArrowRight, Play, Zap, Target, Sparkles } from 'lucide-react';
 import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
+import { IMAGES } from '../content/images';
 
 export default function ServicesShowcase() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function ServicesShowcase() {
         { icon: Zap, text: 'Monthly content calendars' },
         { icon: Sparkles, text: 'Campaign strategy' },
       ],
-      image: '/DSC04407.jpg',
+      image: IMAGES.services.contentAsAService,
       color: '#E9A820',
     },
     {
@@ -38,7 +39,7 @@ export default function ServicesShowcase() {
         { icon: Target, text: 'Smart funnel systems' },
         { icon: Sparkles, text: 'Custom integrations' },
       ],
-      image: '/n8nworkflow.png',
+      image: IMAGES.services.aiAutomation,
       color: '#2d1654',
     },
     {
@@ -55,7 +56,7 @@ export default function ServicesShowcase() {
         { icon: Zap, text: 'Documentary storytelling' },
         { icon: Sparkles, text: 'Event coverage' },
       ],
-      image: '/LedcorExample_compressed.jpg',
+      image: IMAGES.services.creativeProduction,
       color: '#E9A820',
     },
   ];

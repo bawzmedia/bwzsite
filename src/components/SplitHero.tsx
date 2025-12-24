@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import ProjectQuestionnaireModal from './ProjectQuestionnaireModal';
+import { IMAGES } from '../content/images';
 
 export default function SplitHero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,7 +52,7 @@ export default function SplitHero() {
           {/* Right side - Image - Full height, NO overlay to show full colors */}
           <div className="relative min-h-[50svh] lg:min-h-[100svh] order-1 lg:order-2">
             <img
-              src="/A7404497.jpg"
+              src={IMAGES.splitHero.main}
               alt="Creative Work"
               className="absolute inset-0 w-full h-full object-cover"
             />

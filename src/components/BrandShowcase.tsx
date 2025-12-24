@@ -1,16 +1,17 @@
 import { BlurredInfiniteSlider } from './InfiniteSlider';
+import { IMAGES } from '../content/images';
 
 export default function BrandShowcase() {
   const brands = [
-    { name: 'Sportsman Channel', logo: '/pngegg (1).png', height: 60 },
-    { name: 'World Fishing Network', logo: '/pngegg.png', height: 100 },
-    { name: 'Wolf Lake', logo: '/Wolf_Lake-Logo-Final-003.svg', height: 120 },
-    { name: 'Lisa Roper Outdoors', logo: '/LisaRoperB2.png', height: 100 },
-    { name: 'Al Faruq', logo: '/AlFaruqLogo.webp', height: 130 },
-    { name: 'Aboriginal Training Services', logo: '/ats-logo-transparent.png', height: 80 },
-    { name: 'Ledcor Group', logo: '/ledcor-group-of-companies-brand-logo-architectural-engineering-others-5a50790059d1d8c3d35c6e41806b5121.png', height: 100 },
-    { name: "Cabela's", logo: "/Cabela's_Logo.svg", height: 80 },
-    { name: 'Fish Logo', logo: '/IMG_8668.webp', height: 192 }
+    { name: 'Sportsman Channel', logo: IMAGES.brandLogos.sportsmanChannel, height: 60 },
+    { name: 'World Fishing Network', logo: IMAGES.brandLogos.worldFishingNetwork, height: 100 },
+    { name: 'Wolf Lake', logo: IMAGES.brandLogos.wolfLake, height: 120 },
+    { name: 'Lisa Roper Outdoors', logo: IMAGES.brandLogos.lisaRoperOutdoors, height: 100 },
+    { name: 'Al Faruq', logo: IMAGES.brandLogos.alFaruq, height: 130 },
+    { name: 'Aboriginal Training Services', logo: IMAGES.brandLogos.aboriginalTrainingServices, height: 80 },
+    { name: 'Ledcor Group', logo: IMAGES.brandLogos.ledcorGroup, height: 100 },
+    { name: "Cabela's", logo: IMAGES.brandLogos.cabelas, height: 80 },
+    { name: 'Fish Logo', logo: IMAGES.brandLogos.fishLogo, height: 192 }
   ];
 
   return (

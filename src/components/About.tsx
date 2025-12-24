@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Sparkles, Zap, Award, Target } from 'lucide-react';
+import { IMAGES } from '../content/images';
 
 export default function About() {
   const [isHovered, setIsHovered] = useState(false);
@@ -44,7 +45,7 @@ export default function About() {
               {/* Profile Image */}
               <div className="absolute inset-2 sm:inset-3 rounded-full overflow-hidden border-2 sm:border-4 border-black">
                 <img
-                  src="/Professional Profile Photo Instagram Post .png"
+                  src={IMAGES.about.profile}
                   alt="Ahmed Bawazir - Founder & Creative Director"
                   className="w-full h-full object-cover"
                 />

@@ -1,6 +1,7 @@
 import { Instagram, Linkedin, Facebook, Youtube } from 'lucide-react';
 import { useState } from 'react';
 import LegalModal from './LegalModal';
+import { IMAGES } from '../content/images';
 
 export default function Footer() {
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | 'cookies' | null>(null);
@@ -22,7 +23,7 @@ export default function Footer() {
       {/* Layer 3 (top): Footer content */}
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 z-10">
         <div className="py-8 flex flex-col items-center gap-6">
-          <img src="/Bawzmedia Main Logo.png" alt="Bawzmedia" className="h-10 relative z-20" />
+          <img src={IMAGES.navigation.logo} alt="Bawzmedia" className="h-10 relative z-20" />
 
           <div className="flex gap-4 relative z-20">
             {socialLinks.map((social, index) => (
