@@ -1,23 +1,27 @@
 export default function ProblemSection() {
   const problems = [
     {
-      title: 'No Time to Create',
-      description: "Between client calls, operations, and growing your business, content creation always falls to the bottom of the list. You know you need it, but there's never enough hours in the day.",
+      title: 'Time Pressure',
+      subtitle: 'Marketing Keeps Falling Down the Priority List',
+      description: "Between sales calls, operations, and leadership decisions, marketing gets pushed aside. Not because it is unimportant, but because higher-leverage work keeps taking precedence.",
       image: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80',
     },
     {
-      title: 'Inconsistent Posting',
-      description: "You start strong with a content plan, but life happens. Weeks go by without a post, and rebuilding momentum feels like starting from scratch every time.",
+      title: 'Consistency Gap',
+      subtitle: 'Momentum Is Hard to Maintain',
+      description: "You start with a plan. Then the business demands attention elsewhere. Weeks pass, visibility drops, and restarting feels like rebuilding from zero again.",
       image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80',
     },
     {
-      title: 'In-House is Expensive',
-      description: "Hiring a full-time videographer means $60K+ in salary, plus equipment, software, and training. For most businesses, the math just doesn't work.",
+      title: 'Internal Cost',
+      subtitle: 'Doing This In-House Rarely Makes Sense',
+      description: "Hiring full-time talent means salary, tools, management, and constant direction. For most companies, the cost and distraction outweigh the upside.",
       image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
     },
     {
-      title: 'Quality Matters',
-      description: "You've seen what professional content does for your competitors. Your brand deserves the same level of polish, but finding reliable creative partners is exhausting.",
+      title: 'Reputation Risk',
+      subtitle: 'Your Brand Is Being Judged Quietly',
+      description: "Prospects compare you to competitors who look established and active. Inconsistent or low-quality content signals stagnation, even when the business is strong.",
       image: 'https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?w=800&q=80',
     },
   ];
@@ -68,9 +72,14 @@ export default function ProblemSection() {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Title */}
-                  <h3 className="text-lg sm:text-xl font-black text-white mb-3 group-hover:text-[#E9A820] transition-colors duration-300">
+                  <h3 className="text-lg sm:text-xl font-black text-white mb-1 group-hover:text-[#E9A820] transition-colors duration-300">
                     {problem.title}
                   </h3>
+                  
+                  {/* Subtitle */}
+                  <p className="text-sm font-semibold text-[#E9A820]/80 mb-3">
+                    {problem.subtitle}
+                  </p>
                   
                   {/* Description */}
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
