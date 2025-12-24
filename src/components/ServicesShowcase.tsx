@@ -211,7 +211,7 @@ export default function ServicesShowcase() {
             </div>
 
             {/* Right - Service Details */}
-            <div className="relative h-[580px]">
+            <div className="relative h-[620px]">
               {services.map((service, index) => (
                 <div
                   key={service.id}
@@ -239,12 +239,12 @@ export default function ServicesShowcase() {
                     </div>
                   </div>
 
-                  <div className="flex-1 flex flex-col">
+                  <div className="flex-1 flex flex-col justify-center">
                     <p className="text-base text-white/70 leading-relaxed mb-5 line-clamp-4">
                       {service.description}
                     </p>
 
-                    <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="grid grid-cols-2 gap-3 mb-8">
                       {service.highlights.map((highlight, hIndex) => (
                         <div key={hIndex} className="flex items-start gap-2">
                           <highlight.icon className="w-4 h-4 text-[#E9A820] flex-shrink-0 mt-0.5" />
@@ -253,7 +253,7 @@ export default function ServicesShowcase() {
                       ))}
                     </div>
 
-                    <div className="mt-auto">
+                    <div>
                       <button
                         onClick={() => setIsModalOpen(true)}
                         className="inline-flex items-center gap-3 px-8 py-4 bg-[#E9A820] hover:bg-[#f4c430] transition-all duration-300"
