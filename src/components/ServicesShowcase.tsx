@@ -86,7 +86,7 @@ export default function ServicesShowcase() {
               Marketing Services
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-              HOW WE CAN <span className="text-[#E9A820]">HELP YOU</span>
+              HOW WE REMOVE MARKETING <span className="text-[#E9A820]">FROM YOUR PLATE</span>
             </h2>
           </div>
 
