@@ -70,8 +70,8 @@ export default function HeroCarousel() {
         <div className="text-center max-w-5xl mx-auto">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1] mb-4 sm:mb-6">
-            <span className="block text-white drop-shadow-lg">CINEMATIC CONTENT.</span>
-            <span className="block text-[#E9A820] mt-1 sm:mt-2 drop-shadow-lg">DELIVERED MONTHLY.</span>
+            <span className="block text-white drop-shadow-lg">YOU HIRE MARKETING FOR TWO REASONS.</span>
+            <span className="block text-[#E9A820] mt-1 sm:mt-2 drop-shadow-lg">WE HANDLE BOTH.</span>
           </h1>
 
           {/* Subheadline */}
