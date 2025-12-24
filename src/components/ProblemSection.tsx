@@ -35,10 +35,10 @@ export default function ProblemSection() {
         {/* Header */}
         <div className="text-center mb-10 sm:mb-12">
           <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
-            The Content Struggle is Real
+            The Real Problem
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
-            DOES THIS <span className="text-[#E9A820]">SOUND FAMILIAR?</span>
+            THIS IS WHERE MARKETING STARTS <span className="text-[#E9A820]">COMPETING WITH LEADERSHIP</span>
           </h2>
         </div>
 
