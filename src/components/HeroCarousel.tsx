@@ -76,8 +76,8 @@ export default function HeroCarousel() {
 
           {/* Subheadline */}
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-light max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-            Broadcast-quality video, photography, and social content on subscription. 
-            <span className="text-white font-medium"> No more scrambling for posts.</span>
+            Either you want more qualified clients, or you want marketing handled without stealing your time.
+            <span className="text-white font-medium"> We build revenue-focused video, AI content systems, and brands that work in the background while you run the business.</span>
           </p>
 
           {/* CTA Button */}
