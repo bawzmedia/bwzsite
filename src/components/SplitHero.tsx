@@ -54,7 +54,7 @@ export default function SplitHero() {
             <img
               src={IMAGES.splitHero.main}
               alt="Creative Work"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-right"
             />
 
             {/* Floating badge */}
