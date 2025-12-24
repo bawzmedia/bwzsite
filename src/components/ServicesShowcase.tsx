@@ -154,14 +154,14 @@ export default function ServicesShowcase() {
           </div>
 
           {/* Desktop: Side by Side */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left - Service Selector */}
             <div className="space-y-3">
               {services.map((service, index) => (
                 <button
                   key={service.id}
                   onClick={() => setActiveService(index)}
-                  className={`w-full text-left p-5 transition-all duration-500 border-l-4 ${
+                  className={`w-full text-left p-5 transition-all duration-500 border-l-4 min-h-[120px] ${
                     activeService === index
                       ? 'bg-white/[0.05] border-[#E9A820]'
                       : 'bg-transparent border-transparent hover:bg-white/[0.02] hover:border-white/20'
@@ -169,7 +169,7 @@ export default function ServicesShowcase() {
                 >
                   <div className="flex items-start gap-4">
                     <div 
-                      className={`w-12 h-12 flex items-center justify-center transition-all duration-500 ${
+                      className={`w-12 h-12 flex-shrink-0 flex items-center justify-center transition-all duration-500 ${
                         activeService === index ? 'bg-[#E9A820]' : 'bg-white/5'
                       }`}
                     >
@@ -180,7 +180,7 @@ export default function ServicesShowcase() {
                       />
                     </div>
 
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <p className={`text-xs font-bold tracking-wider uppercase mb-1 transition-colors duration-500 ${
                         activeService === index ? 'text-[#E9A820]' : 'text-white/30'
                       }`}>
@@ -191,7 +191,7 @@ export default function ServicesShowcase() {
                       }`}>
                         {service.title}
                       </h3>
-                      <p className={`text-sm mt-1 transition-colors duration-500 ${
+                      <p className={`text-sm mt-1 transition-colors duration-500 line-clamp-2 ${
                         activeService === index ? 'text-white/70' : 'text-white/30'
                       }`}>
                         {service.tagline}
@@ -199,7 +199,7 @@ export default function ServicesShowcase() {
                     </div>
 
                     <ArrowRight 
-                      className={`w-5 h-5 transition-all duration-500 ${
+                      className={`w-5 h-5 flex-shrink-0 transition-all duration-500 ${
                         activeService === index 
                           ? 'text-[#E9A820] translate-x-0 opacity-100' 
                           : 'text-white/20 -translate-x-2 opacity-0'
