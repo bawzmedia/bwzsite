@@ -211,11 +211,11 @@ export default function ServicesShowcase() {
             </div>
 
             {/* Right - Service Details */}
-            <div className="relative">
+            <div className="relative min-h-[520px]">
               {services.map((service, index) => (
                 <div
                   key={service.id}
-                  className={`transition-all duration-700 ${
+                  className={`flex flex-col h-full transition-all duration-700 ${
                     activeService === index 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-8 absolute inset-0 pointer-events-none'
@@ -239,11 +239,11 @@ export default function ServicesShowcase() {
                     </div>
                   </div>
 
-                  <p className="text-base text-white/70 leading-relaxed mb-5">
+                  <p className="text-base text-white/70 leading-relaxed mb-5 min-h-[96px]">
                     {service.description}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="grid grid-cols-2 gap-3 mb-6 min-h-[72px]">
                     {service.highlights.map((highlight, hIndex) => (
                       <div key={hIndex} className="flex items-center gap-2">
                         <highlight.icon className="w-4 h-4 text-[#E9A820] flex-shrink-0" />
