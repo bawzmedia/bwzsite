@@ -5,103 +5,121 @@ export default function ProblemSection() {
       subtitle: 'Marketing Keeps Falling Down the Priority List',
       description: "Between sales calls, operations, and leadership decisions, marketing gets pushed aside. Not because it is unimportant, but because higher-leverage work keeps taking precedence.",
       image: '/timepressure.png',
+      number: '01',
     },
     {
       title: 'Consistency Gap',
       subtitle: 'Momentum Is Hard to Maintain',
       description: "You start with a plan. Then the business demands attention elsewhere. Weeks pass, visibility drops, and restarting feels like rebuilding from zero again.",
       image: '/consistancygap.png',
+      number: '02',
     },
     {
       title: 'Internal Cost',
       subtitle: 'Doing This In-House Rarely Makes Sense',
       description: "Hiring full-time talent means salary, tools, management, and constant direction. For most companies, the cost and distraction outweigh the upside.",
       image: '/internalcost.png',
+      number: '03',
     },
     {
       title: 'Reputation Risk',
       subtitle: 'Your Brand Is Being Judged Quietly',
       description: "Prospects compare you to competitors who look established and active. Inconsistent or low-quality content signals stagnation, even when the business is strong.",
       image: '/reputationrisk.png',
+      number: '04',
     },
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-gradient-to-br from-[#2d1654] via-[#3a1d6e] to-[#2d1654] overflow-hidden">
-      {/* Background effects - Purple with grid */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(233,168,32,0.1)_0%,transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(233,168,32,0.08)_0%,transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
-      </div>
-      
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* Header */}
-        <div className="text-center mb-10 sm:mb-12">
-          <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
+    <>
+      {/* Header Section */}
+      <section className="relative min-h-[50svh] flex items-center justify-center bg-gradient-to-br from-[#2d1654] via-[#3a1d6e] to-[#2d1654] overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(233,168,32,0.1)_0%,transparent_60%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+        </div>
+        
+        <div className="relative text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+          <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-4">
             The Real Problem
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
             THIS IS WHERE MARKETING STARTS <span className="text-[#E9A820]">COMPETING WITH LEADERSHIP</span>
           </h2>
         </div>
+      </section>
 
-        {/* Grid - Image and Text Separated */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          {problems.map((problem, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden border border-white/10 hover:border-[#E9A820]/40 transition-colors duration-300"
-            >
-              {/* Image Section */}
-              <div className="relative h-40 sm:h-48 overflow-hidden">
-                <img 
-                  src={problem.image} 
-                  alt={problem.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                {/* Subtle gradient at bottom for transition to black tile */}
-                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black to-transparent"></div>
+      {/* Full-Bleed Problem Sections */}
+      {problems.map((problem, index) => (
+        <section
+          key={index}
+          className="relative min-h-[100svh] flex items-center justify-center overflow-hidden"
+        >
+          {/* Full-bleed background image */}
+          <div className="absolute inset-0">
+            <img
+              src={problem.image}
+              alt={problem.title}
+              className="w-full h-full object-cover"
+            />
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80"></div>
+            {/* Subtle grid overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+            {/* Problem Number */}
+            <div className="inline-block mb-6">
+              <div className="text-6xl sm:text-7xl md:text-8xl font-black text-[#E9A820]/20 leading-none">
+                {problem.number}
               </div>
-
-              {/* Text Section - Black background with faint grid lines */}
-              <div className="relative bg-black p-5 sm:p-6">
-                {/* Faint grid pattern inside the tile */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Title */}
-                  <h3 className="text-lg sm:text-xl font-black text-white mb-1 group-hover:text-[#E9A820] transition-colors duration-300">
-                    {problem.title}
-                  </h3>
-                  
-                  {/* Subtitle */}
-                  <p className="text-sm font-semibold text-[#E9A820]/80 mb-3">
-                    {problem.subtitle}
-                  </p>
-                  
-                  {/* Description */}
-                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                    {problem.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Corner Accent */}
-              <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#E9A820]/30 group-hover:border-[#E9A820]/60 transition-colors duration-300"></div>
             </div>
-          ))}
-        </div>
 
-        {/* Bottom text */}
-        <div className="text-center mt-10 sm:mt-12">
-          <p className="text-base sm:text-lg md:text-xl font-bold text-white">
+            {/* Title */}
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-[0.95]">
+              {problem.title.toUpperCase()}
+            </h3>
+
+            {/* Subtitle */}
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#E9A820] mb-8">
+              {problem.subtitle}
+            </p>
+
+            {/* Description */}
+            <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+              {problem.description}
+            </p>
+
+            {/* Decorative line */}
+            <div className="mt-10 flex items-center justify-center gap-3">
+              <div className="w-12 h-px bg-[#E9A820]/30"></div>
+              <div className="w-2 h-2 bg-[#E9A820]"></div>
+              <div className="w-12 h-px bg-[#E9A820]/30"></div>
+            </div>
+          </div>
+
+          {/* Corner accent */}
+          <div className="absolute top-8 left-8 w-16 h-16 border-t-2 border-l-2 border-[#E9A820]/40"></div>
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-b-2 border-r-2 border-[#E9A820]/40"></div>
+        </section>
+      ))}
+
+      {/* Closing Statement Section */}
+      <section className="relative min-h-[50svh] flex items-center justify-center bg-gradient-to-br from-[#2d1654] via-[#3a1d6e] to-[#2d1654] overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(233,168,32,0.1)_0%,transparent_60%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+        </div>
+        
+        <div className="relative text-center px-6 max-w-3xl mx-auto">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
             The solution is not more effort.{' '}
             <span className="text-[#E9A820]">It is better systems.</span>
           </p>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
