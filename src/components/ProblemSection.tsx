@@ -1,180 +1,106 @@
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
 export default function ProblemSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
   const problems = [
     {
       title: 'Time Pressure',
       subtitle: 'Marketing Keeps Falling Down the Priority List',
       description: "Between sales calls, operations, and leadership decisions, marketing gets pushed aside. Not because it is unimportant, but because higher-leverage work keeps taking precedence.",
       image: '/timepressure.png',
-      number: '01',
     },
     {
       title: 'Consistency Gap',
       subtitle: 'Momentum Is Hard to Maintain',
       description: "You start with a plan. Then the business demands attention elsewhere. Weeks pass, visibility drops, and restarting feels like rebuilding from zero again.",
       image: '/consistancygap.png',
-      number: '02',
     },
     {
       title: 'Internal Cost',
       subtitle: 'Doing This In-House Rarely Makes Sense',
       description: "Hiring full-time talent means salary, tools, management, and constant direction. For most companies, the cost and distraction outweigh the upside.",
       image: '/internalcost.png',
-      number: '03',
     },
     {
       title: 'Reputation Risk',
       subtitle: 'Your Brand Is Being Judged Quietly',
       description: "Prospects compare you to competitors who look established and active. Inconsistent or low-quality content signals stagnation, even when the business is strong.",
       image: '/reputationrisk.png',
-      number: '04',
     },
   ];
 
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % problems.length);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, problems.length]);
-
-  const nextSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev + 1) % problems.length);
-  };
-
-  const prevSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev - 1 + problems.length) % problems.length);
-  };
-
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-black">
-      {/* Background Slides */}
-      {problems.map((problem, index) => (
-        <div
-          key={index}
-          className="absolute inset-0 transition-all duration-1000"
-          style={{
-            opacity: currentSlide === index ? 1 : 0,
-            transform: `scale(${currentSlide === index ? 1 : 1.05})`,
-          }}
-        >
-          <img
-            src={problem.image}
-            alt={problem.title}
-            className="w-full h-full object-cover"
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/60 to-black/75"></div>
-        </div>
-      ))}
-
-      {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12 z-10">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Section badge */}
+    <section className="relative min-h-[100svh] flex flex-col justify-center py-12 sm:py-16 bg-gradient-to-br from-[#2d1654] via-[#3a1d6e] to-[#2d1654] overflow-hidden">
+      {/* Background effects - Purple with grid */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(233,168,32,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(233,168,32,0.08)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+      </div>
+      
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-12">
           <p className="text-[#E9A820] text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
             The Real Problem
           </p>
-
-          {/* Main headline (static) */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
             THIS IS WHERE MARKETING STARTS <span className="text-[#E9A820]">COMPETING WITH LEADERSHIP</span>
           </h2>
-
-          {/* Carousel content */}
-          <div className="relative">
-            {problems.map((problem, index) => (
-              <div
-                key={index}
-                className="transition-all duration-700"
-                style={{
-                  opacity: currentSlide === index ? 1 : 0,
-                  transform: currentSlide === index ? 'translateY(0)' : 'translateY(20px)',
-                  position: currentSlide === index ? 'relative' : 'absolute',
-                  inset: currentSlide === index ? 'auto' : '0',
-                  pointerEvents: currentSlide === index ? 'auto' : 'none',
-                }}
-              >
-                {/* Number */}
-                <div className="text-5xl sm:text-6xl md:text-7xl font-black text-[#E9A820]/30 mb-4">
-                  {problem.number}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 leading-tight">
-                  {problem.title.toUpperCase()}
-                </h3>
-
-                {/* Subtitle */}
-                <p className="text-lg sm:text-xl md:text-2xl font-bold text-[#E9A820] mb-6">
-                  {problem.subtitle}
-                </p>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
-                  {problem.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom statement */}
-          <div className="mt-12 sm:mt-16 pt-8 border-t border-[#E9A820]/20">
-            <p className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight">
-              The solution is not more effort.{' '}
-              <span className="text-[#E9A820]">It is better systems.</span>
-            </p>
-          </div>
         </div>
-      </div>
 
-      {/* Navigation arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 bg-black/50 backdrop-blur-sm border border-[#E9A820]/30 hover:border-[#E9A820] hover:bg-[#E9A820]/20 transition-all group"
-        aria-label="Previous problem"
-      >
-        <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-[#E9A820] transition-colors mx-auto" />
-      </button>
+        {/* Grid - Image and Text Separated */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          {problems.map((problem, index) => (
+            <div
+              key={index}
+              className="group relative overflow-hidden border border-white/10 hover:border-[#E9A820]/40 transition-colors duration-300"
+            >
+              {/* Image Section */}
+              <div className="relative h-40 sm:h-48 overflow-hidden">
+                <img 
+                  src={problem.image} 
+                  alt={problem.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Subtle gradient at bottom for transition to black tile */}
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black to-transparent"></div>
+              </div>
 
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 bg-black/50 backdrop-blur-sm border border-[#E9A820]/30 hover:border-[#E9A820] hover:bg-[#E9A820]/20 transition-all group"
-        aria-label="Next problem"
-      >
-        <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:text-[#E9A820] transition-colors mx-auto" />
-      </button>
+              {/* Text Section - Black background with faint grid lines */}
+              <div className="relative bg-black p-5 sm:p-6">
+                {/* Faint grid pattern inside the tile */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Title */}
+                  <h3 className="text-lg sm:text-xl font-black text-white mb-1 group-hover:text-[#E9A820] transition-colors duration-300">
+                    {problem.title}
+                  </h3>
+                  
+                  {/* Subtitle */}
+                  <p className="text-sm font-semibold text-[#E9A820]/80 mb-3">
+                    {problem.subtitle}
+                  </p>
+                  
+                  {/* Description */}
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+                    {problem.description}
+                  </p>
+                </div>
+              </div>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {problems.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setIsAutoPlaying(false);
-              setCurrentSlide(index);
-            }}
-            className="transition-all duration-300"
-            style={{
-              width: currentSlide === index ? '40px' : '12px',
-              height: '3px',
-              background: currentSlide === index
-                ? '#E9A820'
-                : 'rgba(255,255,255,0.3)',
-            }}
-            aria-label={`Go to problem ${index + 1}`}
-          />
-        ))}
+              {/* Corner Accent */}
+              <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#E9A820]/30 group-hover:border-[#E9A820]/60 transition-colors duration-300"></div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom text */}
+        <div className="text-center mt-10 sm:mt-12">
+          <p className="text-base sm:text-lg md:text-xl font-bold text-white">
+            The solution is not more effort.{' '}
+            <span className="text-[#E9A820]">It is better systems.</span>
+          </p>
+        </div>
       </div>
     </section>
   );
